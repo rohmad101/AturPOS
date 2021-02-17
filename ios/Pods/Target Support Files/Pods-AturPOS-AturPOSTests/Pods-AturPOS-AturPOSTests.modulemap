@@ -1,0 +1,6 @@
+module Pods_AturPOS_AturPOSTests {
+  umbrella header "Pods-AturPOS-AturPOSTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
