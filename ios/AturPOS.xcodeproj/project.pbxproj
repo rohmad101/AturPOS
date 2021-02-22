@@ -15,11 +15,27 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* AturPOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* AturPOSTests.m */; };
+		74566A6877937050D574326F /* libPods-AturPOS-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED7DBAE2171BDCA1B8748961 /* libPods-AturPOS-tvOSTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		9F35C4F574E710F3E22269DC /* libPods-AturPOS-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3982FFE6B0255867763A9EDF /* libPods-AturPOS-tvOS.a */; };
-		A4B148D367B119F99EC2C2E5 /* libPods-AturPOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EADEA568884090C1B008E181 /* libPods-AturPOS.a */; };
-		B9BE70BEF87ABACA22A7BCB6 /* libPods-AturPOS-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60796641CDFE67F015A69D88 /* libPods-AturPOS-tvOSTests.a */; };
-		E0E402AF856107EC82190244 /* libPods-AturPOS-AturPOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BE758935A381A571F5B21 /* libPods-AturPOS-AturPOSTests.a */; };
+		85499151A34F2BDB89AC16FF /* libPods-AturPOS-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E7510D226DF4EC22BD688B1 /* libPods-AturPOS-tvOS.a */; };
+		94F50276EC448CBC884A2B98 /* libPods-AturPOS-AturPOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BE1A9F21529E881DC76B723 /* libPods-AturPOS-AturPOSTests.a */; };
+		A2BFC499C663C1E9D43C844F /* libPods-AturPOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E01D09A53A52470A37E685F /* libPods-AturPOS.a */; };
+		A2EE475E5F6B4132ACBF9744 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C990125FF72417FA73A00D0 /* AntDesign.ttf */; };
+		AAB8D88361D84421A4C2B3CF /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BBB1CF3384C847819119AC3B /* Entypo.ttf */; };
+		B19DDC28285C497FB4C20EE5 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0857FEA78164DEAA69C033F /* EvilIcons.ttf */; };
+		150D2057C1C346309A0DD640 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B643778E5B3E48C5B6E5A6C6 /* Feather.ttf */; };
+		4348A530721B4C88BEAAD9A9 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 01B53B4CE2334600A1F17237 /* FontAwesome.ttf */; };
+		5A1EB874074844C4BA1B8044 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC390D6722924C8485CA7ECF /* FontAwesome5_Brands.ttf */; };
+		C1E2477B091E4D2184DBC189 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FB63048991B34508A378BFA2 /* FontAwesome5_Regular.ttf */; };
+		562F247462914C41A0E60800 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 90D582660C1548BD8BFFBB6B /* FontAwesome5_Solid.ttf */; };
+		044C83E660844079976A2368 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 328617D973B24D38A0830AB1 /* Fontisto.ttf */; };
+		8A361E392FB241C994F18F09 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D6D142FD37C84B558EFBA04A /* Foundation.ttf */; };
+		EB1AC9B0D43D4C9594D90CB7 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C1DCDF11A8A14EC38012B0B0 /* Ionicons.ttf */; };
+		1C0AEE0F852F4E368046F878 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4623735E34A4D0788B86173 /* MaterialCommunityIcons.ttf */; };
+		D12F68CD202B4AD79160020E /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0FE3B40BBDA444CEB9A5EB2C /* MaterialIcons.ttf */; };
+		19FC74D954E24287AA63E229 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C0BCC4246D34DE4BA4CBDC1 /* Octicons.ttf */; };
+		80AD86759A434C759AD6150F /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2E35BFB3231461186BB6752 /* SimpleLineIcons.ttf */; };
+		9CDDC9185ACF4167B5D0700F /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 26EAA74C44C44EF6A6856FDC /* Zocial.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +60,7 @@
 		00E356EE1AD99517003FC87E /* AturPOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AturPOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* AturPOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AturPOSTests.m; sourceTree = "<group>"; };
+		0E7510D226DF4EC22BD688B1 /* libPods-AturPOS-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AturPOS-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07F961A680F5B00A75B9A /* AturPOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AturPOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = AturPOS/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = AturPOS/AppDelegate.m; sourceTree = "<group>"; };
@@ -52,21 +69,36 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = AturPOS/main.m; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* AturPOS-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AturPOS-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* AturPOS-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AturPOS-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		301BE758935A381A571F5B21 /* libPods-AturPOS-AturPOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AturPOS-AturPOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		32B04630CC446F19212E357A /* Pods-AturPOS-AturPOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AturPOS-AturPOSTests.release.xcconfig"; path = "Target Support Files/Pods-AturPOS-AturPOSTests/Pods-AturPOS-AturPOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		3982FFE6B0255867763A9EDF /* libPods-AturPOS-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AturPOS-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3ECD546F3378FD459F4E82B0 /* Pods-AturPOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AturPOS.debug.xcconfig"; path = "Target Support Files/Pods-AturPOS/Pods-AturPOS.debug.xcconfig"; sourceTree = "<group>"; };
-		4D40708BE521DBE7DC6E68C8 /* Pods-AturPOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AturPOS.release.xcconfig"; path = "Target Support Files/Pods-AturPOS/Pods-AturPOS.release.xcconfig"; sourceTree = "<group>"; };
-		60796641CDFE67F015A69D88 /* libPods-AturPOS-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AturPOS-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		733F2AB28EB81C13C7E74C7E /* Pods-AturPOS-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AturPOS-tvOS.release.xcconfig"; path = "Target Support Files/Pods-AturPOS-tvOS/Pods-AturPOS-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		2E01D09A53A52470A37E685F /* libPods-AturPOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AturPOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C31AF20388746C24B793783 /* Pods-AturPOS-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AturPOS-tvOS.release.xcconfig"; path = "Target Support Files/Pods-AturPOS-tvOS/Pods-AturPOS-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		6F3BDF3DD22A906ABC69325F /* Pods-AturPOS-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AturPOS-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-AturPOS-tvOS/Pods-AturPOS-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		75F6B6FC0333C14C98604D81 /* Pods-AturPOS-AturPOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AturPOS-AturPOSTests.release.xcconfig"; path = "Target Support Files/Pods-AturPOS-AturPOSTests/Pods-AturPOS-AturPOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = AturPOS/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8D3D2E99D3814D73E5353ACB /* Pods-AturPOS-AturPOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AturPOS-AturPOSTests.debug.xcconfig"; path = "Target Support Files/Pods-AturPOS-AturPOSTests/Pods-AturPOS-AturPOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		A12CCB16C7D8CECEE169FA2F /* Pods-AturPOS-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AturPOS-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-AturPOS-tvOSTests/Pods-AturPOS-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		D7E787E39BC1C66D83758CC7 /* Pods-AturPOS-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AturPOS-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-AturPOS-tvOSTests/Pods-AturPOS-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		EADEA568884090C1B008E181 /* libPods-AturPOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AturPOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		88342BCC62C704A77E76940A /* Pods-AturPOS-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AturPOS-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-AturPOS-tvOSTests/Pods-AturPOS-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		8A0D817779AFB5FE7F871C0D /* Pods-AturPOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AturPOS.debug.xcconfig"; path = "Target Support Files/Pods-AturPOS/Pods-AturPOS.debug.xcconfig"; sourceTree = "<group>"; };
+		8B7899B7C83FB2E4153BF6A1 /* Pods-AturPOS-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AturPOS-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-AturPOS-tvOSTests/Pods-AturPOS-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8BE1A9F21529E881DC76B723 /* libPods-AturPOS-AturPOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AturPOS-AturPOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA656AA231C2E3233F25DFBD /* Pods-AturPOS-AturPOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AturPOS-AturPOSTests.debug.xcconfig"; path = "Target Support Files/Pods-AturPOS-AturPOSTests/Pods-AturPOS-AturPOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		F802D5001BCA818988E3DC60 /* Pods-AturPOS-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AturPOS-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-AturPOS-tvOS/Pods-AturPOS-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		ED7DBAE2171BDCA1B8748961 /* libPods-AturPOS-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AturPOS-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBD22F3F9BA76D476EF14201 /* Pods-AturPOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AturPOS.release.xcconfig"; path = "Target Support Files/Pods-AturPOS/Pods-AturPOS.release.xcconfig"; sourceTree = "<group>"; };
+		3C990125FF72417FA73A00D0 /* AntDesign.ttf */ = {isa = PBXFileReference; name = "AntDesign.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BBB1CF3384C847819119AC3B /* Entypo.ttf */ = {isa = PBXFileReference; name = "Entypo.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D0857FEA78164DEAA69C033F /* EvilIcons.ttf */ = {isa = PBXFileReference; name = "EvilIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B643778E5B3E48C5B6E5A6C6 /* Feather.ttf */ = {isa = PBXFileReference; name = "Feather.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		01B53B4CE2334600A1F17237 /* FontAwesome.ttf */ = {isa = PBXFileReference; name = "FontAwesome.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DC390D6722924C8485CA7ECF /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; name = "FontAwesome5_Brands.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FB63048991B34508A378BFA2 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; name = "FontAwesome5_Regular.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		90D582660C1548BD8BFFBB6B /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; name = "FontAwesome5_Solid.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		328617D973B24D38A0830AB1 /* Fontisto.ttf */ = {isa = PBXFileReference; name = "Fontisto.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D6D142FD37C84B558EFBA04A /* Foundation.ttf */ = {isa = PBXFileReference; name = "Foundation.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C1DCDF11A8A14EC38012B0B0 /* Ionicons.ttf */ = {isa = PBXFileReference; name = "Ionicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A4623735E34A4D0788B86173 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; name = "MaterialCommunityIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0FE3B40BBDA444CEB9A5EB2C /* MaterialIcons.ttf */ = {isa = PBXFileReference; name = "MaterialIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2C0BCC4246D34DE4BA4CBDC1 /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D2E35BFB3231461186BB6752 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		26EAA74C44C44EF6A6856FDC /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0E402AF856107EC82190244 /* libPods-AturPOS-AturPOSTests.a in Frameworks */,
+				94F50276EC448CBC884A2B98 /* libPods-AturPOS-AturPOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,7 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4B148D367B119F99EC2C2E5 /* libPods-AturPOS.a in Frameworks */,
+				A2BFC499C663C1E9D43C844F /* libPods-AturPOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,7 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F35C4F574E710F3E22269DC /* libPods-AturPOS-tvOS.a in Frameworks */,
+				85499151A34F2BDB89AC16FF /* libPods-AturPOS-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,7 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9BE70BEF87ABACA22A7BCB6 /* libPods-AturPOS-tvOSTests.a in Frameworks */,
+				74566A6877937050D574326F /* libPods-AturPOS-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,28 +173,12 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				EADEA568884090C1B008E181 /* libPods-AturPOS.a */,
-				301BE758935A381A571F5B21 /* libPods-AturPOS-AturPOSTests.a */,
-				3982FFE6B0255867763A9EDF /* libPods-AturPOS-tvOS.a */,
-				60796641CDFE67F015A69D88 /* libPods-AturPOS-tvOSTests.a */,
+				2E01D09A53A52470A37E685F /* libPods-AturPOS.a */,
+				8BE1A9F21529E881DC76B723 /* libPods-AturPOS-AturPOSTests.a */,
+				0E7510D226DF4EC22BD688B1 /* libPods-AturPOS-tvOS.a */,
+				ED7DBAE2171BDCA1B8748961 /* libPods-AturPOS-tvOSTests.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		71ED362ACEA45F9F60DCD285 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				3ECD546F3378FD459F4E82B0 /* Pods-AturPOS.debug.xcconfig */,
-				4D40708BE521DBE7DC6E68C8 /* Pods-AturPOS.release.xcconfig */,
-				8D3D2E99D3814D73E5353ACB /* Pods-AturPOS-AturPOSTests.debug.xcconfig */,
-				32B04630CC446F19212E357A /* Pods-AturPOS-AturPOSTests.release.xcconfig */,
-				F802D5001BCA818988E3DC60 /* Pods-AturPOS-tvOS.debug.xcconfig */,
-				733F2AB28EB81C13C7E74C7E /* Pods-AturPOS-tvOS.release.xcconfig */,
-				D7E787E39BC1C66D83758CC7 /* Pods-AturPOS-tvOSTests.debug.xcconfig */,
-				A12CCB16C7D8CECEE169FA2F /* Pods-AturPOS-tvOSTests.release.xcconfig */,
-			);
-			name = Pods;
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -180,7 +196,8 @@
 				00E356EF1AD99517003FC87E /* AturPOSTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				71ED362ACEA45F9F60DCD285 /* Pods */,
+				9B92825EC4D259ECBB0DE4D6 /* Pods */,
+				BD7167FF15DC4D109BDC519D /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -198,6 +215,46 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9B92825EC4D259ECBB0DE4D6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8A0D817779AFB5FE7F871C0D /* Pods-AturPOS.debug.xcconfig */,
+				FBD22F3F9BA76D476EF14201 /* Pods-AturPOS.release.xcconfig */,
+				AA656AA231C2E3233F25DFBD /* Pods-AturPOS-AturPOSTests.debug.xcconfig */,
+				75F6B6FC0333C14C98604D81 /* Pods-AturPOS-AturPOSTests.release.xcconfig */,
+				6F3BDF3DD22A906ABC69325F /* Pods-AturPOS-tvOS.debug.xcconfig */,
+				6C31AF20388746C24B793783 /* Pods-AturPOS-tvOS.release.xcconfig */,
+				8B7899B7C83FB2E4153BF6A1 /* Pods-AturPOS-tvOSTests.debug.xcconfig */,
+				88342BCC62C704A77E76940A /* Pods-AturPOS-tvOSTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		BD7167FF15DC4D109BDC519D /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				3C990125FF72417FA73A00D0 /* AntDesign.ttf */,
+				BBB1CF3384C847819119AC3B /* Entypo.ttf */,
+				D0857FEA78164DEAA69C033F /* EvilIcons.ttf */,
+				B643778E5B3E48C5B6E5A6C6 /* Feather.ttf */,
+				01B53B4CE2334600A1F17237 /* FontAwesome.ttf */,
+				DC390D6722924C8485CA7ECF /* FontAwesome5_Brands.ttf */,
+				FB63048991B34508A378BFA2 /* FontAwesome5_Regular.ttf */,
+				90D582660C1548BD8BFFBB6B /* FontAwesome5_Solid.ttf */,
+				328617D973B24D38A0830AB1 /* Fontisto.ttf */,
+				D6D142FD37C84B558EFBA04A /* Foundation.ttf */,
+				C1DCDF11A8A14EC38012B0B0 /* Ionicons.ttf */,
+				A4623735E34A4D0788B86173 /* MaterialCommunityIcons.ttf */,
+				0FE3B40BBDA444CEB9A5EB2C /* MaterialIcons.ttf */,
+				2C0BCC4246D34DE4BA4CBDC1 /* Octicons.ttf */,
+				D2E35BFB3231461186BB6752 /* SimpleLineIcons.ttf */,
+				26EAA74C44C44EF6A6856FDC /* Zocial.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -205,11 +262,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "AturPOSTests" */;
 			buildPhases = (
-				77DA01E931F34FC3A825D18E /* [CP] Check Pods Manifest.lock */,
+				0199EA4BDFFB746D1E173AA4 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				821B8C042C64835F8AA180E7 /* [CP] Copy Pods Resources */,
+				790F186B3D8EA1678ECD1A5C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -225,13 +282,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "AturPOS" */;
 			buildPhases = (
-				3D9C6EB91031CB0FB90EA6D7 /* [CP] Check Pods Manifest.lock */,
+				94F2BD40152E81E1EEF8334A /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				105C9A386D6F7A14EE348052 /* [CP] Copy Pods Resources */,
+				D204AE4756AB68B2C3946AFC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -246,7 +303,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "AturPOS-tvOS" */;
 			buildPhases = (
-				73BA548363266DFE16E83368 /* [CP] Check Pods Manifest.lock */,
+				B78082197AD60361DF06C0B9 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
@@ -266,7 +323,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "AturPOS-tvOSTests" */;
 			buildPhases = (
-				D70EA4931AAC0E669A2EC293 /* [CP] Check Pods Manifest.lock */,
+				BA86761B9E57AC826A1946C2 /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
 				2D02E48E1E0B4A5D006451C7 /* Resources */,
@@ -342,6 +399,22 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				A2EE475E5F6B4132ACBF9744 /* AntDesign.ttf in Resources */,
+				AAB8D88361D84421A4C2B3CF /* Entypo.ttf in Resources */,
+				B19DDC28285C497FB4C20EE5 /* EvilIcons.ttf in Resources */,
+				150D2057C1C346309A0DD640 /* Feather.ttf in Resources */,
+				4348A530721B4C88BEAAD9A9 /* FontAwesome.ttf in Resources */,
+				5A1EB874074844C4BA1B8044 /* FontAwesome5_Brands.ttf in Resources */,
+				C1E2477B091E4D2184DBC189 /* FontAwesome5_Regular.ttf in Resources */,
+				562F247462914C41A0E60800 /* FontAwesome5_Solid.ttf in Resources */,
+				044C83E660844079976A2368 /* Fontisto.ttf in Resources */,
+				8A361E392FB241C994F18F09 /* Foundation.ttf in Resources */,
+				EB1AC9B0D43D4C9594D90CB7 /* Ionicons.ttf in Resources */,
+				1C0AEE0F852F4E368046F878 /* MaterialCommunityIcons.ttf in Resources */,
+				D12F68CD202B4AD79160020E /* MaterialIcons.ttf in Resources */,
+				19FC74D954E24287AA63E229 /* Octicons.ttf in Resources */,
+				80AD86759A434C759AD6150F /* SimpleLineIcons.ttf in Resources */,
+				9CDDC9185ACF4167B5D0700F /* Zocial.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,83 +450,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		105C9A386D6F7A14EE348052 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AturPOS/Pods-AturPOS-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AturPOS/Pods-AturPOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Bundle React Native Code And Images";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
-		};
-		3D9C6EB91031CB0FB90EA6D7 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AturPOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		73BA548363266DFE16E83368 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AturPOS-tvOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		77DA01E931F34FC3A825D18E /* [CP] Check Pods Manifest.lock */ = {
+		0199EA4BDFFB746D1E173AA4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -475,7 +472,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		821B8C042C64835F8AA180E7 /* [CP] Copy Pods Resources */ = {
+		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native Code And Images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		790F186B3D8EA1678ECD1A5C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -493,7 +504,51 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AturPOS-AturPOSTests/Pods-AturPOS-AturPOSTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D70EA4931AAC0E669A2EC293 /* [CP] Check Pods Manifest.lock */ = {
+		94F2BD40152E81E1EEF8334A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AturPOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B78082197AD60361DF06C0B9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AturPOS-tvOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BA86761B9E57AC826A1946C2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -513,6 +568,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D204AE4756AB68B2C3946AFC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AturPOS/Pods-AturPOS-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AturPOS/Pods-AturPOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -608,7 +681,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D3D2E99D3814D73E5353ACB /* Pods-AturPOS-AturPOSTests.debug.xcconfig */;
+			baseConfigurationReference = AA656AA231C2E3233F25DFBD /* Pods-AturPOS-AturPOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -631,7 +704,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 32B04630CC446F19212E357A /* Pods-AturPOS-AturPOSTests.release.xcconfig */;
+			baseConfigurationReference = 75F6B6FC0333C14C98604D81 /* Pods-AturPOS-AturPOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -651,7 +724,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3ECD546F3378FD459F4E82B0 /* Pods-AturPOS.debug.xcconfig */;
+			baseConfigurationReference = 8A0D817779AFB5FE7F871C0D /* Pods-AturPOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -674,7 +747,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4D40708BE521DBE7DC6E68C8 /* Pods-AturPOS.release.xcconfig */;
+			baseConfigurationReference = FBD22F3F9BA76D476EF14201 /* Pods-AturPOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -695,7 +768,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F802D5001BCA818988E3DC60 /* Pods-AturPOS-tvOS.debug.xcconfig */;
+			baseConfigurationReference = 6F3BDF3DD22A906ABC69325F /* Pods-AturPOS-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -723,7 +796,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 733F2AB28EB81C13C7E74C7E /* Pods-AturPOS-tvOS.release.xcconfig */;
+			baseConfigurationReference = 6C31AF20388746C24B793783 /* Pods-AturPOS-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -751,7 +824,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D7E787E39BC1C66D83758CC7 /* Pods-AturPOS-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = 8B7899B7C83FB2E4153BF6A1 /* Pods-AturPOS-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -778,7 +851,7 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A12CCB16C7D8CECEE169FA2F /* Pods-AturPOS-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = 88342BCC62C704A77E76940A /* Pods-AturPOS-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
