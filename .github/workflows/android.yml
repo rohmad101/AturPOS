@@ -1,6 +1,11 @@
 name: Android
 
-on: [pull_request]
+on:
+  push:
+    branchs:
+      - main
+      - master 
+      - dev
 
 jobs:
   build:
