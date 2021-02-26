@@ -24,8 +24,9 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+      - run: npm install && yarn
       - run: npm ci
       - run: npx jetifier
       - run: ./gradlew assembleRelease
         working-directory: android
-        name: apk bukukas
+        name: apk aturPOS
