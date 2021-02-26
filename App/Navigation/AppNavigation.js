@@ -6,6 +6,8 @@ import LoginScreen from '../Containers/LoginScreen'
 import RegisterScreen from '../Containers/RegisterScreen'
 import HomeScreen from '../Containers/HomeScreen' 
 import DetailProductScreen from '../Containers/DetailProductScreen'
+import CheckoutScreen from '../Containers/CheckoutScreen'
+import CartScreen from '../Containers/CartScreen'
 
 import styles from './Styles/NavigationStyles'
 
@@ -24,7 +26,9 @@ const AuthNavigator = createStackNavigator({
 
 const Resgitered = createStackNavigator({
   HomeScreen: { screen: HomeScreen },
-  DetailProductScreen: { screen: DetailProductScreen }
+  DetailProductScreen: { screen: DetailProductScreen },
+  CheckoutScreen: { screen: CheckoutScreen },
+  CartScreen: { screen: CartScreen }
 },{
   // Default config for all screens
   headerMode: 'none',

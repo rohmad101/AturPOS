@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { ScrollView, Text, Image, View, FlatList, ActivityIndicator } from 'react-native'
+import { ScrollView, Text, Image, View, FlatList, ActivityIndicator, Alert } from 'react-native'
 import { connect } from 'react-redux'
 import { Images, Metrics } from '../Themes'
-import { SearchBar, Icon, ListItem, Avatar } from 'react-native-elements';
+import { SearchBar, Icon, ListItem, Avatar, Header } from 'react-native-elements';
 import ProductRedux from '../Redux/ProductRedux';
 import ProductDetailRedux from '../Redux/ProductDetailRedux';
 import UserRedux from '../Redux/UserRedux';
@@ -15,6 +15,7 @@ function HomeScreen (props) {
   const [listData, setListData] = useState([])
   const [loading, setLoading] = useState(false)
   const {data,token,ProductRequest, navigation, detail} =props
+  
   const renderItem = ({ item }) => (
     <ListItem bottomDivider onPress={()=> goDetail(item)}>
       <Avatar source={{uri: item.image1}} size={Metrics.screenWidth*0.3} />
@@ -76,6 +77,13 @@ function HomeScreen (props) {
     return (
       <View style={styles.mainContainer}>
         <ScrollView style={styles.container}>
+        <Header
+            placement="left"
+            leftComponent={<Icon name= 'menu' color= '#fff' onPress={()=> Alert.alert('aww','Still on Development')} />}
+            centerComponent={{ text: 'Hi , Selamat Datang', style: { color: '#fff' } }}
+            rightComponent={<Icon name= 'shopping-cart' color= '#fff' onPress={()=> navigation.push('CartScreen')} />}
+            containerStyle={{height:Metrics.screenHeight*0.125,paddingTop:Metrics.screenHeight*0.05}}
+          />
           <SearchBar
             placeholder="Yuk cari disini "
             onChangeText={search=>setupdateSearch(search)}
@@ -97,6 +105,7 @@ const mapStateToProps = (state) => {
   return {
     data: state.product.payload,
     token: state.user.payload.token,
+    user: state.user.payload.name,
     detail: state.productDetail.payload
   }
 }

@@ -11,7 +11,9 @@ export const reducers = combineReducers({
   search: require('./SearchRedux').reducer,
   user: require('./UserRedux').reducer,
   product: require('./ProductRedux').reducer,
-  productDetail: require('./ProductDetailRedux').reducer
+  productDetail: require('./ProductDetailRedux').reducer,
+  cart: require('./CartRedux').reducer,
+  calculate: require('./CalculateRedux').reducer
 })
 
 export default () => {

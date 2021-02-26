@@ -15,7 +15,7 @@ class LaunchScreen extends Component {
     //   actions: [NavigationActions.navigate({ routeName: 'AuthScreen' })],
     // });
 
-      console.log(this.props.data)
+      // console.log(this.props.data)
     setTimeout(() => {
       if(this.props.data && this.props.data.token){
         this.props.navigation.navigate('Main', {

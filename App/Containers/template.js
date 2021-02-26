@@ -36,5 +36,5 @@ function Template (props) {
 // const mapDispatchToProps = (dispatch) => {
 //   return bindActionCreators(Object.assign(DataLocalRedux), dispatch)
 // }
-// export default (mapStateToProps, mapDispatchToProps)(Template)
+// export default connect(mapStateToProps, mapDispatchToProps)(Template)
 export default connect(null,null)(Template)
