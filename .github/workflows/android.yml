@@ -30,3 +30,8 @@ jobs:
       - run: ./gradlew assembleRelease
         working-directory: android
         name: apk aturPOS
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: aturPOS-apk
+          path: '**/*.apk'
