@@ -16,7 +16,9 @@ const renderItem = ({ item }) => (
       <ListItem.Title>{item.name}</ListItem.Title>
       <ListItem.Subtitle>{item.subtitle}</ListItem.Subtitle>
     </ListItem.Content>
-    <ListItem.Chevron />
+    <ListItem.Content>
+        <Text style={{padding:4, backgroundColor:'red', color:'white', borderRadius:20}}>X</Text>
+    </ListItem.Content>
   </ListItem>
 )
 
@@ -24,7 +26,7 @@ function Template (props) {
   const { data }  = props
   const [list, setList] = useState([])
   useEffect(()=>{
-    console.log(data)
+    // console.log(data)
     let cart = []
     data.map(item =>{
         cart.push( {
@@ -35,6 +37,7 @@ function Template (props) {
     })
     setList(cart)
   },[])
+   
   let keyExtractor = (item, index) => index.toString()
     return (
       <View style={styles.mainContainer}>
@@ -44,16 +47,16 @@ function Template (props) {
 
           <View style={styles.section} >
               <FlatList
-            keyExtractor={keyExtractor}
-            data={list}
-            renderItem={renderItem}/>
+                keyExtractor={keyExtractor}
+                data={list}
+                renderItem={renderItem}/>
 
           </View>
-          :null
+          :<View style={{justifyContent:'center',alignItems:'center', width:Metrics.screenWidth, height:Metrics.screenHeight}}>
+          <Text>Cart Still Empty</Text>
+         </View>
             }
-          <View style={{justifyContent:'center',alignItems:'center', width:Metrics.screenWidth, height:Metrics.screenHeight}}>
-              <Text>Cart Still Empty</Text>
-             </View>
+         
         </ScrollView>
       </View>
     )
