@@ -27,7 +27,6 @@ const AuthNavigator = createStackNavigator({
 const Resgitered = createStackNavigator({
   HomeScreen: { screen: HomeScreen },
   DetailProductScreen: { screen: DetailProductScreen },
-  CheckoutScreen: { screen: CheckoutScreen },
   CartScreen: { screen: CartScreen }
 },{
   // Default config for all screens
@@ -37,10 +36,20 @@ const Resgitered = createStackNavigator({
   }
 })
 
+const Checkout = createStackNavigator({
+  CheckoutScreen: { screen: CheckoutScreen }
+},{
+  // Default config for all screens
+  headerMode: 'none',
+  navigationOptions: {
+    headerStyle: styles.header
+  }
+})
 const PrimaryNav = createSwitchNavigator({
   LaunchScreen: { screen: LaunchScreen },
   Auth: AuthNavigator,
-  Main: Resgitered
+  Main: Resgitered,
+  Checkout: Checkout
 }, {
   // Default config for all screens
   headerMode: 'none',

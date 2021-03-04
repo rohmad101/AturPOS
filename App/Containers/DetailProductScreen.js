@@ -124,17 +124,8 @@ function DetailProductScreen(props) {
         </View>
         <TouchableOpacity
           onPress={() => {
-            props.CartSuccess([
-              detail.data,
-              {
-                product_id: detail.data.id,
-                qty: qty,
-                disc: detail.data.discount,
-                tax: detail.data.tax,
-              },
-            ]);
             if (qty > 0) {
-              navigation.push('CheckoutScreen', {
+              navigation.navigate('CheckoutScreen', {
                 data :[
                   detail.data,
                   {

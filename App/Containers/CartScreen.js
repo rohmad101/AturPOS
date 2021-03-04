@@ -42,6 +42,7 @@ function CartScreen(props) {
     console.log(data)
     let cart = [];
     data.map((item) => {
+      console.log(item)
       cart.push({
         name: item[0].name,
         avatar_url: item[0].image1,
@@ -77,7 +78,7 @@ function CartScreen(props) {
       </ScrollView>
       {data.length>0?<TouchableOpacity
           onPress={() => {
-              navigation.push('CheckoutScreen',{
+              navigation.navigate('CheckoutScreen',{
                 from: 'cart',
               })
           }}

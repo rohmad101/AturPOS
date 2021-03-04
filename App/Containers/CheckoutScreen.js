@@ -32,7 +32,8 @@ function CheckoutScreen(props) {
   const [openLogistic, setopenLogistic] = useState(false);
   const [openLogisticDetail, setopenLogisticDetail] = useState(false);
   const [catatan, setCatatan] = useState('');
-  const [address, setaddress] = useState({});
+  const [totalPrice, settotalPrice] = useState(0);
+  const [totalBarang, settotalBarang] = useState(0);
   const [nameLocation, setnameLocation] = useState('');
   const [alamat1, setalamat1] = useState('');
   const [alamat2, setalamat2] = useState('');
@@ -49,13 +50,15 @@ function CheckoutScreen(props) {
   const [kota, setkota] = useState();
   const [district, setdistrict] = useState();
   const [subdistrict, setsubdistrict] = useState();
-  const [zip, setzip] = useState();
+  const [zip_code, setzip] = useState();
   const [ListItem, setListItem] = useState()
 
   useEffect(() => {
     let list =[]
-    axios
-      .get(
+    let price =0
+    let totalBarang = 0
+    //get list provinsi
+    axios.get(
         'https://hercules.aturtoko.id/aturorder/public/api/v1/address/province',
         {
           headers: {
@@ -72,6 +75,32 @@ function CheckoutScreen(props) {
         setlistProvinsi(list);
       })
       .catch((err) => console.log(err));
+    //get address
+    axios
+      .get(
+        'https://hercules.aturtoko.id/aturorder/public/api/v1/address',
+        {
+          headers: {
+            Authorization: 'Bearer ' + user.token,
+          },
+          timeout: 10000,
+        },
+      )
+      .then((res) => {
+        // console.log('address', res.data.data[0].zip_code)
+        setnameLocation(res.data.data[0].address_label)
+        setalamat1(res.data.data[0].address_line_1)
+        setalamat2(res.data.data[0].address_line_2)
+        setprovinsi(res.data.data[0].province_id)
+        setkota(res.data.data[0].city_id)
+        setdistrict(res.data.data[0].district_id)
+        setsubdistrict(res.data.data[0].subdistrict_id)
+        setzip(res.data.data[0].zip_code)
+        setnoHP(res.data.data[0].phone_no)
+        setemail(res.data.data[0].email)
+      })
+      .catch((err) => console.log(err));
+    //get user profile fot get user id
     fetch('https://hercules.aturtoko.id/aturorder/public/api/v1/profile', {
       method: 'GET',
       headers: {
@@ -87,6 +116,7 @@ function CheckoutScreen(props) {
         alert(err);
       });
     setitem([]);
+    //get list logistic
     fetch('https://hercules.aturtoko.id/aturorder/public//api/v1/logistic', {
       method: 'GET',
       headers: {
@@ -116,12 +146,21 @@ function CheckoutScreen(props) {
         alert(err);
       })
       if(navigation.getParam('from') === 'cart'){
+        // ListItem[0].price * ListItem[1].qty
         cart[0].map(dat =>{
           list.push(dat)
         })
+        cart.map(dat =>{
+          price += dat[0].price * dat[1].qty
+          totalBarang += parseInt(dat[1].qty)
+
+        })
         setListItem(list)
+        settotalPrice(price)
+        settotalBarang(totalBarang)
       }else{
         setListItem(navigation.getParam('data'))
+        settotalPrice(navigation.getParam('data')[0].price * navigation.getParam('data')[1].qty)
       }
   }, [])
 
@@ -267,7 +306,7 @@ function CheckoutScreen(props) {
       },
       total_payment: ListItem[0].price * ListItem[1].qty,
     };
-    console.log(data);
+    // console.log(data);
     axios
       .post(
         'https://hercules.aturtoko.id/aturorder/public/api/v1/order',
@@ -280,7 +319,7 @@ function CheckoutScreen(props) {
         },
       )
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         Alert.alert(
           'Selamat Pesanan Anda Berhasil di Proses',
           'mohon di tunggu ya pesanan anda sampai di rumah',
@@ -288,8 +327,10 @@ function CheckoutScreen(props) {
             {
               text: 'OK',
               onPress: () => {
-                navigation.popToTop();
+                navigation.navigate('HomeScreen');
+                if(navigation.getParam('from') === 'cart'){
                 props.CartSuccess([]);
+                }
               },
             },
           ],
@@ -336,7 +377,7 @@ function CheckoutScreen(props) {
         phone_no: noHP,
         email: email,
         notes: notes,
-        zip_code: zip,
+        zip_code: zip_code,
       },
     };
     axios
@@ -351,7 +392,7 @@ function CheckoutScreen(props) {
         },
       )
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setVisible(false);
       })
       .catch((err) => console.log(err));
@@ -359,6 +400,18 @@ function CheckoutScreen(props) {
   return (
     <View style={styles.mainContainer}>
       <ScrollView style={styles.container}>
+      <View style={{flexDirection:'row', justifyContent:'space-between',alignItems:'center',padding:12}}>
+            <TouchableOpacity onPress={()=>  {
+               if(navigation.getParam('from') === 'cart'){
+                  navigation.navigate('HomeScreen')
+               }else{
+                  navigation.navigate('HomeScreen')
+                  // props.CartSuccess([])
+               }
+            }}>
+                <Image source={Images.backButton} style={{tintColor:'black', width:Metrics.screenWidth*0.125, height:Metrics.screenWidth*0.125}} />
+            </TouchableOpacity>
+        </View>
         <View style={styles.section}>
           <Text>Alamat :</Text>
           <TextInput
@@ -434,10 +487,10 @@ function CheckoutScreen(props) {
           {ListItem && ListItem.length > 0 ? (
             <PricingCard
               color="#4f9deb"
-              title={ListItem[0].name}
-              price={'Rp.' + ListItem[0].price * ListItem[1].qty}
+              title={'Total Pembayaran'}
+              price={'Rp.' + totalPrice}
               info={[
-                ListItem[1].qty + ' pcs',
+                totalBarang+ ' pcs',
                 'tax ' + ListItem[1].tax,
                 'Disc ' + ListItem[1].disc + '%',
               ]}
@@ -645,10 +698,9 @@ function CheckoutScreen(props) {
           <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
             <Text>Zip Code</Text>
             <TextInput
-              value={zip}
-              placeholder={'Notes'}
-              multiline={true}
-              maxLength={100}
+              value={zip_code}
+              placeholder={'Zip Code'}
+              keyboardType={'number-pad'}
               style={{
                 borderBottomWidth: 0.5,
                 width: Metrics.screenWidth * 0.7,
