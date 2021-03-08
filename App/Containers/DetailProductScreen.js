@@ -74,8 +74,17 @@ function DetailProductScreen(props) {
             alignItems: 'center',
           }}>
           <Text>Qty:</Text>
+          <TouchableOpacity 
+           onPress={()=> {
+            if (qty > 0) {
+              setQty( qty-1);
+            }
+           }}
+           style={{ backgroundColor:'grey', padding:8, borderRadius:24, height:24, justifyContent:'space-around', marginLeft:12}}>
+            <Text style={{fontSize:Metrics.screenWidth*0.075, color:'#fff', marginBottom:4}}>-</Text>
+          </TouchableOpacity>
           <TextInput
-            value={qty}
+            value={qty.toString()}
             placeholder={'0'}
             keyboardType={'number-pad'}
             style={{
@@ -86,13 +95,23 @@ function DetailProductScreen(props) {
             }}
             onChangeText={(qty1) => {
               if (qty1 <= detail.data.stock) {
-                setQty(qty1);
+                setQty(parseInt(qty1));
               } else {
-                setQty(0);
                 alert('out of stock');
               }
             }}
           />
+          <TouchableOpacity
+            onPress={()=>{
+              if (qty < detail.data.stock) {
+                setQty( qty+1);
+              } else {
+                alert('out of stock');
+              }
+            }}
+            style={{ backgroundColor:'green', padding:8, borderRadius:24, height:24, justifyContent:'space-around', marginRight:12}}>
+            <Text style={{fontSize:Metrics.screenWidth*0.05, color:'#fff', marginBottom:4}}>+</Text>
+          </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
               props.CartSuccess([
