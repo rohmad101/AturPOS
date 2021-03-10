@@ -1,9 +1,11 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable prettier/prettier */
 import React, {useState, useEffect} from 'react';
 import {ScrollView, Text, Image, View, FlatList, Alert, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
 import {Images, Metrics} from '../Themes';
+import { currencyFormat } from '../Transforms/curency'
 
 // Styles
 import styles from './Styles/LaunchScreenStyles';
@@ -26,7 +28,7 @@ const RenderItem = ({item, index, deleteItem, increaseQty, decreaseeQty}) =>(
       <View style={{flexDirection:'row',alignItems:'center'}}> 
       <TouchableOpacity 
           onPress={()=> decreaseeQty(index)}
-           style={{ backgroundColor:'grey', padding:8, borderRadius:24, height:24, justifyContent:'space-around', marginLeft:12}}>
+           style={{ backgroundColor:'red', padding:8, borderRadius:24, height:24, justifyContent:'space-around', marginLeft:12}}>
             <Text style={{fontSize:Metrics.screenWidth*0.075, color:'#fff', marginBottom:4}}>-</Text>
       </TouchableOpacity>
       <TextInput
@@ -105,7 +107,7 @@ function CartScreen(props) {
     // console.log('willDelete',willDelete)
     setList(willDelete)
   }
-
+  let totalharga = 0
   return (
     <View style={styles.mainContainer}>
       <ScrollView style={styles.container}>
@@ -130,8 +132,28 @@ function CartScreen(props) {
             <Text>Cart Still Empty</Text>
           </View>
         )}
-      </ScrollView>
-      {data.length>0?<TouchableOpacity
+        {data.length>0?
+      <View style={{marginBottom:12}}>
+        <View style={{marginHorizontal:Metrics.screenWidth*0.1, flexDirection:'column'}}>
+          <Text style={{fontWeight:'700'}}>Ringkasan Belanja</Text>
+          {
+                list.map((dataItem, index) =>{ 
+                  totalharga += dataItem[0].price * dataItem[1].qty;
+                  return (
+                  <View style={{ flexDirection:'row', justifyContent:'space-between'}}>
+                    <Text style={{color:'grey'}}>Total Harga ({dataItem[1].qty} Barang)</Text>
+                    <Text style={{color:'grey'}}>{currencyFormat(dataItem[0].price)}</Text>
+                  </View>
+                )
+                }
+                )
+            }
+          <View style={{ flexDirection:'row', justifyContent:'space-between', borderTopWidth:0.5, marginTop:Metrics.screenHeight*0.025, paddingTop:Metrics.screenHeight*0.025}}>
+            <Text  style={{fontWeight:'700'}}>Total Harga</Text>
+            <Text>{currencyFormat(totalharga)}</Text>
+          </View>
+        </View>
+      <TouchableOpacity
           onPress={() => {
               navigation.navigate('CheckoutScreen',{
                 from: 'cart',
@@ -153,7 +175,10 @@ function CartScreen(props) {
             }}>
             Checkout
           </Text>
-        </TouchableOpacity>:null}
+        </TouchableOpacity>
+        </View>
+        :null}
+      </ScrollView>
     </View>
   );
 }

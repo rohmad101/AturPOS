@@ -13,6 +13,7 @@ import {Tile} from 'react-native-elements';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Images, Metrics} from '../Themes';
+import { currencyFormat } from '../Transforms/curency'
 
 import ProductDetailRedux from '../Redux/ProductDetailRedux';
 import CartRedux from '../Redux/CartRedux';
@@ -57,7 +58,7 @@ function DetailProductScreen(props) {
             paddingHorizontal: 12,
           }}>
           <Text>Stock: {detail.data.stock - qty}</Text>
-          <Text>Rp.{detail.data.price}</Text>
+          <Text>{currencyFormat(detail.data.price)}</Text>
         </View>
         <View style={{width: Metrics.screenWidth, paddingHorizontal: 12}}>
           <Text style={{fontWeight: '700', paddingVertical: 12}}>
@@ -77,14 +78,14 @@ function DetailProductScreen(props) {
           <TouchableOpacity 
            onPress={()=> {
             if (qty > 0) {
-              setQty( qty-1);
+              setQty(qty-1);
             }
            }}
-           style={{ backgroundColor:'grey', padding:8, borderRadius:24, height:24, justifyContent:'space-around', marginLeft:12}}>
+           style={{ backgroundColor:qty > 0?'red':'grey', padding:8, borderRadius:24, height:24, justifyContent:'space-around', marginLeft:12}}>
             <Text style={{fontSize:Metrics.screenWidth*0.075, color:'#fff', marginBottom:4}}>-</Text>
           </TouchableOpacity>
           <TextInput
-            value={qty.toString()}
+            value={qty.toLocaleString()}
             placeholder={'0'}
             keyboardType={'number-pad'}
             style={{
@@ -93,18 +94,19 @@ function DetailProductScreen(props) {
               marginHorizontal: 12,
               textAlign: 'center',
             }}
+            type
             onChangeText={(qty1) => {
               if (qty1 <= detail.data.stock) {
-                setQty(parseInt(qty1));
+                setQty(qty1);
               } else {
-                alert('out of stock');
+                alert('minimal pembelian produk ini adalah 1');
               }
             }}
           />
           <TouchableOpacity
             onPress={()=>{
               if (qty < detail.data.stock) {
-                setQty( qty+1);
+                setQty(parseInt(qty)+1);
               } else {
                 alert('out of stock');
               }
@@ -114,22 +116,27 @@ function DetailProductScreen(props) {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              props.CartSuccess([
-                ...cart,
-                [
-                  detail.data,
-                  {
-                    product_id: detail.data.id,
-                    qty: qty,
-                    disc: detail.data.discount,
-                    tax: detail.data.tax,
-                  },
-                ],
-              ]);
-              Alert.alert(
-                'Berhasil',
-                'Behasil menambahkan item ke keranjang/cart',
-              );
+              if(qty<1){
+                Alert.alert('Gagal', 'minimal pembelian produk ini adalah 1')
+              }else{
+                props.CartSuccess([
+                  ...cart,
+                  [
+                    detail.data,
+                    {
+                      product_id: detail.data.id,
+                      qty: qty,
+                      disc: detail.data.discount,
+                      tax: detail.data.tax,
+                    },
+                  ],
+                ]);
+                Alert.alert(
+                  'Berhasil',
+                  'Behasil menambahkan item ke keranjang/cart',
+                );
+              }
+             
             }}
             style={{
               backgroundColor: 'green',
@@ -140,6 +147,9 @@ function DetailProductScreen(props) {
               Add to Cart
             </Text>
           </TouchableOpacity>
+        </View>
+        <View>
+
         </View>
         <TouchableOpacity
           onPress={() => {

@@ -13,7 +13,7 @@ import {
 import {connect} from 'react-redux';
 import {Images, Metrics} from '../Themes';
 import DropDownPicker from 'react-native-dropdown-picker';
-
+import { currencyFormat } from '../Transforms/curency'
 import CartRedux from '../Redux/CartRedux';
 import UserRedux from '../Redux/UserRedux';
 import CalculateRedux from '../Redux/CalculateRedux';
@@ -488,7 +488,7 @@ function CheckoutScreen(props) {
             <PricingCard
               color="#4f9deb"
               title={'Total Pembayaran'}
-              price={'Rp.' + totalPrice}
+              price={currencyFormat(totalPrice)}
               info={[
                 totalBarang+ ' pcs',
                 'tax ' + ListItem[1].tax,
