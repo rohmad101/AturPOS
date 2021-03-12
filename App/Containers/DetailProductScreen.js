@@ -158,6 +158,7 @@ function DetailProductScreen(props) {
             Checkout
           </Text>
         </TouchableOpacity>
+        <View style={{height:Metrics.screenHeight*0.05}}/>
       </ScrollView>
     </View>
   );
