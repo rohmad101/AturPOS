@@ -11,6 +11,8 @@ import {
   Alert,
 } from 'react-native';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import { DrawerActions } from 'react-navigation-drawer'
 import {Images, Metrics} from '../Themes';
 import {SearchBar, Icon, ListItem, Avatar, Header} from 'react-native-elements';
 import ProductRedux from '../Redux/ProductRedux';
@@ -18,7 +20,6 @@ import ProductDetailRedux from '../Redux/ProductDetailRedux';
 import UserRedux from '../Redux/UserRedux';
 // Styles
 import styles from './Styles/LaunchScreenStyles';
-import {bindActionCreators} from 'redux';
 
 function HomeScreen(props) {
   const [updateSearch, setupdateSearch] = useState();
@@ -107,7 +108,7 @@ function HomeScreen(props) {
             <Icon
               name="menu"
               color="#fff"
-              onPress={() => Alert.alert('aww', 'Still on Development')}
+              onPress={() => navigation.dispatch(DrawerActions.openDrawer())} 
             />
           }
           centerComponent={{

@@ -4,7 +4,7 @@ import LaunchScreen from '../Containers/LaunchScreen'
 import AuthScreen from '../Containers/AuthScreen'
 import LoginScreen from '../Containers/LoginScreen'
 import RegisterScreen from '../Containers/RegisterScreen'
-import HomeScreen from '../Containers/HomeScreen' 
+import {HomeScreenDrawer} from './Drawer' 
 import DetailProductScreen from '../Containers/DetailProductScreen'
 import CheckoutScreen from '../Containers/CheckoutScreen'
 import CartScreen from '../Containers/CartScreen'
@@ -25,7 +25,7 @@ const AuthNavigator = createStackNavigator({
 })
 
 const Resgitered = createStackNavigator({
-  HomeScreen: { screen: HomeScreen },
+  HomeScreen: { screen: HomeScreenDrawer },
   DetailProductScreen: { screen: DetailProductScreen },
   CartScreen: { screen: CartScreen }
 },{
