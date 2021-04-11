@@ -10,6 +10,7 @@ import CheckoutScreen from '../Containers/CheckoutScreen'
 import CartScreen from '../Containers/CartScreen'
 import HistoryOrder from '../Containers/HistoryOrder'
 import DetailProfile from '../Containers/DetailProfile'
+import DetailHistoryOrder from '../Containers/DetailHistoryOrder'
 
 import styles from './Styles/NavigationStyles'
 
@@ -31,7 +32,8 @@ const Resgitered = createStackNavigator({
   DetailProductScreen: { screen: DetailProductScreen },
   CartScreen: { screen: CartScreen },
   HistoryOrder: { screen: HistoryOrder },
-  DetailProfile: { screen: DetailProfile }
+  DetailProfile: { screen: DetailProfile },
+  DetailHistoryOrder : { screen: DetailHistoryOrder }
 },{
   // Default config for all screens
   headerMode: 'none',
