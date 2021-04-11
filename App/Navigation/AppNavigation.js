@@ -8,6 +8,8 @@ import {HomeScreenDrawer} from './Drawer'
 import DetailProductScreen from '../Containers/DetailProductScreen'
 import CheckoutScreen from '../Containers/CheckoutScreen'
 import CartScreen from '../Containers/CartScreen'
+import HistoryOrder from '../Containers/HistoryOrder'
+import DetailProfile from '../Containers/DetailProfile'
 
 import styles from './Styles/NavigationStyles'
 
@@ -27,7 +29,9 @@ const AuthNavigator = createStackNavigator({
 const Resgitered = createStackNavigator({
   HomeScreen: { screen: HomeScreenDrawer },
   DetailProductScreen: { screen: DetailProductScreen },
-  CartScreen: { screen: CartScreen }
+  CartScreen: { screen: CartScreen },
+  HistoryOrder: { screen: HistoryOrder },
+  DetailProfile: { screen: DetailProfile }
 },{
   // Default config for all screens
   headerMode: 'none',

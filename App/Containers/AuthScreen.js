@@ -8,7 +8,7 @@ import Slideshow from 'react-native-image-slider-show';
 import styles from './Styles/LaunchScreenStyles'
 
 function AuthScreen(props) {
-    const [position, setPosition] = useState(1)
+    const [position, setPosition] = useState(0)
     const  dataSource= [
         {
           url: Images.launch,
@@ -32,6 +32,15 @@ function AuthScreen(props) {
             caption: 'Aplikasi yang bikin hidupmu lebih nyaman, Siap bantuin semua kebutuhanmu, kapanpun dan dimanapun',
         }
     ]
+
+    useEffect(()=>{
+      setTimeout(() => {
+        setPosition(
+          position + 1  === dataSource.length ? 0 : position + 1
+        )
+      }, 2000);
+     
+    },[position])
     return (
       <View style={styles.mainContainer}>
         <ScrollView>
@@ -80,4 +89,4 @@ const mapDispatchToProps = (dispatch) => {
     return null
 }
   
-export default connect(mapStateToProps, mapDispatchToProps)(AuthScreen)
+export default connect(null, null)(AuthScreen)

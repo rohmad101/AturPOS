@@ -78,6 +78,27 @@ function HomeScreen(props) {
     }
   }, [updateSearch]);
 
+  useEffect(()=>{
+    if(!token){
+      Alert.alert(
+        "Logout",
+        "Berhasil",
+        [
+          {
+            text: "OK",
+            onPress: () => navigation.navigate('Auth', {
+              screen: 'AuthScreen',
+              initial: true,
+            }),
+            style: "cancel",
+          },
+        ],
+        {
+          cancelable: false
+        }
+      );
+    }
+  },[token])
   if (loading) {
     return (
       <View style={styles.mainContainer}>
