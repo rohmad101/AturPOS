@@ -67,6 +67,18 @@ class DrawerDashboard extends React.Component {
             </View>
           </TouchableOpacity>
           <Divider style={{ backgroundColor: '#A9A9A9', height: 1 }} />
+          <TouchableOpacity onPress={()=> navigation.push('ListCustomer')}>
+            <View style={{padding: 12, flexDirection: 'row', justifyContent: 'flex-start', width: '65%'}}>
+              <Image
+                source={{
+                  uri: 'https://reactnative.dev/img/tiny_logo.png'
+                }}
+                style={{width: 20, height: 20}}
+              />
+              <Text style={{fontWeight: '600', marginLeft:width*0.05}}>Customer</Text>
+            </View>
+          </TouchableOpacity>
+          <Divider style={{ backgroundColor: '#A9A9A9', height: 1 }} />
           <TouchableOpacity onPress={()=> UserSuccess({})}>
             <View style={{padding: 12, flexDirection: 'row', justifyContent: 'flex-start', width: '65%'}}>
                 <Image

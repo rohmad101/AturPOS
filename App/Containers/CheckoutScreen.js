@@ -15,13 +15,14 @@ import {Images, Metrics} from '../Themes';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { currencyFormat } from '../Transforms/curency'
 import CartRedux from '../Redux/CartRedux';
-import UserRedux from '../Redux/UserRedux';
+import UserRedux, { success } from '../Redux/UserRedux';
 import CalculateRedux from '../Redux/CalculateRedux';
 // Styles
 import styles from './Styles/LaunchScreenStyles';
 import {Overlay, PricingCard} from 'react-native-elements';
 import {bindActionCreators} from 'redux';
 import axios from 'axios';
+import AsyncStorage from '@react-native-community/async-storage';
 
 function CheckoutScreen(props) {
   const {cart, user, navigation} = props;
@@ -52,13 +53,55 @@ function CheckoutScreen(props) {
   const [subdistrict, setsubdistrict] = useState();
   const [zip_code, setzip] = useState();
   const [ListItem, setListItem] = useState()
+  const [customer, setcustomer] = useState()
+  const [openAddCustomer, setopenAddCustomer] = useState(false);
+  const [nameCustomer, setnameCustomer] = useState('');
+  const [emailCustomer, setemailCustomer] = useState('');
+  const [phoneCustomer, setphoneCustomer] = useState('');
 
+  const addCustomer =(value)=>{
+    const custmoer ={
+      "name" : nameCustomer,
+      "phone" : phoneCustomer,
+      "email" : emailCustomer
+  }
+    if(phoneCustomer && nameCustomer && emailCustomer){
+      axios
+      .post(
+        'https://hercules.aturtoko.id/aturorder/public/api/v1/customer',custmoer,
+        {
+          headers: {
+            Authorization: 'Bearer ' + user.token,
+          },
+          timeout: 10000,
+        },
+      ).then(
+        async success =>{
+          setcustomer(success.data.data)
+          await AsyncStorage.setItem('Customer', JSON.stringify(success.data.data))
+          Alert.alert('Success', "add customer Success")
+          setopenAddCustomer(false)
+        }
+      ).catch(err => Alert.alert('Fail', "add customer failed, please try again or check your connection before you submit"))
+    } else {
+      Alert.alert('Fail', "Please fill the form before submit")
+    }
+  }
   useEffect(() => {
     let list =[]
     let price =0
     let totalBarang = 0
+    async function  getLocal(params) {
+      const value =  await AsyncStorage.getItem('Customer')
+      console.log(value)
+      if(value) {
+        // value previously stored
+        setcustomer(JSON.parse(value))
+      }
+    }
+    getLocal()
     //get list provinsi
-    axios.get(
+     axios.get(
         'https://hercules.aturtoko.id/aturorder/public/api/v1/address/province',
         {
           headers: {
@@ -76,7 +119,7 @@ function CheckoutScreen(props) {
       })
       .catch((err) => console.log(err));
     //get address
-    axios
+     axios
       .get(
         'https://hercules.aturtoko.id/aturorder/public/api/v1/address',
         {
@@ -101,7 +144,7 @@ function CheckoutScreen(props) {
       })
       .catch((err) => console.log(err));
     //get user profile fot get user id
-    fetch('https://hercules.aturtoko.id/aturorder/public/api/v1/profile', {
+     fetch('https://hercules.aturtoko.id/aturorder/public/api/v1/profile', {
       method: 'GET',
       headers: {
         Authorization: 'Bearer ' + user.token,
@@ -117,7 +160,7 @@ function CheckoutScreen(props) {
       });
     setitem([]);
     //get list logistic
-    fetch('https://hercules.aturtoko.id/aturorder/public//api/v1/logistic', {
+   fetch('https://hercules.aturtoko.id/aturorder/public//api/v1/logistic', {
       method: 'GET',
       headers: {
         Authorization: 'Bearer ' + user.token,
@@ -147,10 +190,10 @@ function CheckoutScreen(props) {
       })
       if(navigation.getParam('from') === 'cart'){
         // ListItem[0].price * ListItem[1].qty
-        cart[0].map(dat =>{
+         cart[0].map(dat =>{
           list.push(dat)
         })
-        cart.map(dat =>{
+         cart.map(dat =>{
           price += dat[0].price * dat[1].qty
           totalBarang += parseInt(dat[1].qty)
 
@@ -291,7 +334,7 @@ function CheckoutScreen(props) {
       order_datetime: new Date().toString(),
       items: [ListItem[1]],
       customer: {
-        id: useid,
+        id: customer.id,
         notes: catatan,
       },
       shipment: {
@@ -337,7 +380,7 @@ function CheckoutScreen(props) {
           {cancelable: false},
         );
       })
-      .catch((err) => console.log(err));
+      .catch((err) => Alert.alert('Mohon Lengkapi Form Diatas'));
   };
 
   const checkAddress = () => {
@@ -397,6 +440,322 @@ function CheckoutScreen(props) {
       })
       .catch((err) => console.log(err));
   };
+
+  const AddAddressOverlay = () =>(
+    <Overlay
+    isVisible={visible}
+    onBackdropPress={() => setVisible(false)}
+    overlayStyle={{
+      width: Metrics.screenWidth * 0.9,
+      padding: '5%',
+      borderRadius: 12,
+    }}>
+    <ScrollView>
+      <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
+        <Text>Nama Lokasi</Text>
+        <TextInput
+          value={nameLocation}
+          placeholder={'Nama Lokasi'}
+          multiline={true}
+          maxLength={100}
+          style={{
+            borderBottomWidth: 0.5,
+            width: Metrics.screenWidth * 0.7,
+            marginHorizontal: 12,
+            textAlign: 'center',
+          }}
+          onChangeText={(text) => {
+            // setCatatan(cat)
+            setnameLocation(text);
+          }}
+        />
+      </View>
+      <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
+        <Text style={{paddingTop: 12}}>Alamat 1</Text>
+        <TextInput
+          value={alamat1}
+          placeholder={'Alamat 1'}
+          multiline={true}
+          maxLength={100}
+          style={{
+            borderBottomWidth: 0.5,
+            width: Metrics.screenWidth * 0.7,
+            marginHorizontal: 12,
+            textAlign: 'center',
+          }}
+          onChangeText={(text) => {
+            // setCatatan(cat)
+            setalamat1(text);
+          }}
+        />
+      </View>
+      <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
+        <Text style={{paddingVertical: 12}}>Alamat 2</Text>
+        <TextInput
+          value={alamat2}
+          placeholder={'Alamat 2'}
+          multiline={true}
+          maxLength={100}
+          style={{
+            borderBottomWidth: 0.5,
+            width: Metrics.screenWidth * 0.7,
+            marginHorizontal: 12,
+            textAlign: 'center',
+          }}
+          onChangeText={(text) => {
+            // setCatatan(cat)
+            setalamat2(text);
+          }}
+        />
+      </View>
+      <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
+        <Text>Nomor Hp</Text>
+        <TextInput
+          value={noHP}
+          placeholder={'Nomor HP'}
+          keyboardType="number-pad"
+          multiline={true}
+          maxLength={100}
+          style={{
+            borderBottomWidth: 0.5,
+            width: Metrics.screenWidth * 0.7,
+            marginHorizontal: 12,
+            textAlign: 'center',
+          }}
+          onChangeText={(text) => {
+            // setCatatan(cat)
+            setnoHP(text);
+          }}
+        />
+      </View>
+      <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
+        <Text>Email</Text>
+        <TextInput
+          value={email}
+          placeholder={'Email'}
+          multiline={true}
+          maxLength={100}
+          style={{
+            borderBottomWidth: 0.5,
+            width: Metrics.screenWidth * 0.7,
+            marginHorizontal: 12,
+            textAlign: 'center',
+          }}
+          onChangeText={(text) => {
+            // setCatatan(cat)
+            setemail(text);
+          }}
+        />
+      </View>
+      <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
+        <Text>Notes</Text>
+        <TextInput
+          value={notes}
+          placeholder={'Notes'}
+          multiline={true}
+          maxLength={100}
+          style={{
+            borderBottomWidth: 0.5,
+            width: Metrics.screenWidth * 0.7,
+            marginHorizontal: 12,
+            textAlign: 'center',
+          }}
+          onChangeText={(text) => {
+            // setCatatan(cat)
+            setnotes(text);
+          }}
+        />
+      </View>
+      <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
+        <Text>Provinsi</Text>
+        <DropDownPicker
+          items={listProvinsi}
+          placeholder={'Pilih Provinsi'}
+          defaultValue={provinsi}
+          containerStyle={{height: undefined}}
+          style={{backgroundColor: '#fafafa'}}
+          itemStyle={{
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+          }}
+          dropDownStyle={{backgroundColor: '#fafafa'}}
+          onChangeItem={(item) => setprovinsi(item.value)}
+        />
+      </View>
+      <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
+        <Text>Kota/Kabupaten</Text>
+        <DropDownPicker
+          items={listCKota}
+          placeholder={'Pilih Kota'}
+          defaultValue={kota}
+          containerStyle={{height: undefined}}
+          style={{backgroundColor: '#fafafa'}}
+          itemStyle={{
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+          }}
+          dropDownStyle={{backgroundColor: '#fafafa'}}
+          onChangeItem={(item) => setkota(item.value)}
+        />
+      </View>
+      <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
+        <Text>Kecamatan</Text>
+        <DropDownPicker
+          items={listDistrict}
+          placeholder={'Pilih Kota'}
+          defaultValue={district}
+          containerStyle={{height: undefined}}
+          style={{backgroundColor: '#fafafa'}}
+          itemStyle={{
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+          }}
+          dropDownStyle={{backgroundColor: '#fafafa'}}
+          onChangeItem={(item) => setdistrict(item.value)}
+        />
+      </View>
+      <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
+        <Text>Ds/Komplek/Daerah</Text>
+        <DropDownPicker
+          items={listSubDistric}
+          placeholder={'Pilih Daerah'}
+          defaultValue={subdistrict}
+          containerStyle={{height: undefined}}
+          style={{backgroundColor: '#fafafa'}}
+          itemStyle={{
+            justifyContent: 'flex-start',
+            alignItems: 'center',
+          }}
+          dropDownStyle={{backgroundColor: '#fafafa'}}
+          onChangeItem={(item) => setsubdistrict(item.value)}
+        />
+      </View>
+      <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
+        <Text>Zip Code</Text>
+        <TextInput
+          value={zip_code}
+          placeholder={'Zip Code'}
+          keyboardType={'number-pad'}
+          style={{
+            borderBottomWidth: 0.5,
+            width: Metrics.screenWidth * 0.7,
+            marginHorizontal: 12,
+            textAlign: 'center',
+          }}
+          onChangeText={(text) => {
+            // setCatatan(cat)
+            setzip(text);
+          }}
+        />
+      </View>
+      <TouchableOpacity
+        onPress={() => addAddress()}
+        style={{
+          width: Metrics.screenWidth * 0.8,
+          backgroundColor: 'blue',
+          height: 50,
+          borderRadius: 12,
+          marginTop: Metrics.screenHeight * 0.025,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <Text style={{color: '#fff', fontWeight: '700', fontSize: 20}}>
+          {' '}
+          Submit
+        </Text>
+      </TouchableOpacity>
+    </ScrollView>
+  </Overlay>
+  )
+
+  const CustomerOverlay = () =>(
+    <Overlay
+    isVisible={openAddCustomer}
+    onBackdropPress={() => setopenAddCustomer(false)}
+    overlayStyle={{
+      width: Metrics.screenWidth * 0.9,
+      padding: '5%',
+      borderRadius: 12,
+    }}>
+       <ScrollView>
+      <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
+        <Text>Nama</Text>
+        <TextInput
+          value={nameCustomer}
+          placeholder={'Nama'}
+          multiline={true}
+          maxLength={100}
+          style={{
+            borderBottomWidth: 0.5,
+            width: Metrics.screenWidth * 0.7,
+            marginHorizontal: 12,
+            textAlign: 'center',
+          }}
+          onChangeText={(text) => {
+            // setCatatan(cat)
+            setnameCustomer(text);
+          }}
+        />
+      </View>
+      <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
+        <Text style={{paddingTop: 12}}>Email</Text>
+        <TextInput
+          value={emailCustomer}
+          placeholder={'Email'}
+          multiline={true}
+          keyboardType='email-address'
+          maxLength={100}
+          style={{
+            borderBottomWidth: 0.5,
+            width: Metrics.screenWidth * 0.7,
+            marginHorizontal: 12,
+            textAlign: 'center',
+          }}
+          onChangeText={(text) => {
+            // setCatatan(cat)
+            setemailCustomer(text);
+          }}
+        />
+      </View>
+      <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
+        <Text style={{paddingVertical: 12}}>Phone</Text>
+        <TextInput
+          value={phoneCustomer}
+          placeholder={'Phone Number'}
+          multiline={true}
+          keyboardType='number-pad'
+          maxLength={100}
+          style={{
+            borderBottomWidth: 0.5,
+            width: Metrics.screenWidth * 0.7,
+            marginHorizontal: 12,
+            textAlign: 'center',
+          }}
+          onChangeText={(text) => {
+            // setCatatan(cat)
+            setphoneCustomer(parseInt(text));
+          }}
+        />
+      <TouchableOpacity
+        onPress={() => addCustomer()}
+        style={{
+          width: Metrics.screenWidth * 0.8,
+          backgroundColor: 'blue',
+          height: 50,
+          borderRadius: 12,
+          marginTop: Metrics.screenHeight * 0.025,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <Text style={{color: '#fff', fontWeight: '700', fontSize: 20}}>
+          {' '}
+          Submit
+        </Text>
+      </TouchableOpacity>
+      </View>
+      </ScrollView>
+    </Overlay>
+  )
   return (
     <View style={styles.mainContainer}>
       <ScrollView style={styles.container}>
@@ -427,7 +786,18 @@ function CheckoutScreen(props) {
             }}
             onTouchStart={() => setVisible(true)}
           />
-          <Text style={{paddingVertical: 12}}>Pengiriman :</Text>
+          <Text style={{paddingVertical: 12}}> Customer :</Text>
+          <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+            <Text>
+                {customer?customer.name:'Not Avaible'}
+            </Text>
+            <TouchableOpacity 
+              onPress={()=> setopenAddCustomer(true)}
+              style={{ backgroundColor:'green', padding:8, borderRadius:16}}>
+              <Text style={{color:'#fff'}}>{customer?'Replace Customer':'Add Customer'}</Text>
+            </TouchableOpacity>
+          </View>
+          <Text style={{paddingVertical: 12}}> Pengiriman:</Text>
           {item.length > 0 && item[0].length > 0 ? (
             <DropDownPicker
               items={item[0]}
@@ -507,230 +877,8 @@ function CheckoutScreen(props) {
           ) : null}
         </View>
       </ScrollView>
-      <Overlay
-        isVisible={visible}
-        onBackdropPress={() => setVisible(false)}
-        overlayStyle={{
-          width: Metrics.screenWidth * 0.9,
-          padding: '5%',
-          borderRadius: 12,
-        }}>
-        <ScrollView>
-          <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
-            <Text>Nama Lokasi</Text>
-            <TextInput
-              value={nameLocation}
-              placeholder={'Nama Lokasi'}
-              multiline={true}
-              maxLength={100}
-              style={{
-                borderBottomWidth: 0.5,
-                width: Metrics.screenWidth * 0.7,
-                marginHorizontal: 12,
-                textAlign: 'center',
-              }}
-              onChangeText={(text) => {
-                // setCatatan(cat)
-                setnameLocation(text);
-              }}
-            />
-          </View>
-          <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
-            <Text style={{paddingTop: 12}}>Alamat 1</Text>
-            <TextInput
-              value={alamat1}
-              placeholder={'Alamat 1'}
-              multiline={true}
-              maxLength={100}
-              style={{
-                borderBottomWidth: 0.5,
-                width: Metrics.screenWidth * 0.7,
-                marginHorizontal: 12,
-                textAlign: 'center',
-              }}
-              onChangeText={(text) => {
-                // setCatatan(cat)
-                setalamat1(text);
-              }}
-            />
-          </View>
-          <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
-            <Text style={{paddingVertical: 12}}>Alamat 2</Text>
-            <TextInput
-              value={alamat2}
-              placeholder={'Alamat 2'}
-              multiline={true}
-              maxLength={100}
-              style={{
-                borderBottomWidth: 0.5,
-                width: Metrics.screenWidth * 0.7,
-                marginHorizontal: 12,
-                textAlign: 'center',
-              }}
-              onChangeText={(text) => {
-                // setCatatan(cat)
-                setalamat2(text);
-              }}
-            />
-          </View>
-          <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
-            <Text>Nomor Hp</Text>
-            <TextInput
-              value={noHP}
-              placeholder={'Nomor HP'}
-              keyboardType="number-pad"
-              multiline={true}
-              maxLength={100}
-              style={{
-                borderBottomWidth: 0.5,
-                width: Metrics.screenWidth * 0.7,
-                marginHorizontal: 12,
-                textAlign: 'center',
-              }}
-              onChangeText={(text) => {
-                // setCatatan(cat)
-                setnoHP(text);
-              }}
-            />
-          </View>
-          <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
-            <Text>Email</Text>
-            <TextInput
-              value={email}
-              placeholder={'Email'}
-              multiline={true}
-              maxLength={100}
-              style={{
-                borderBottomWidth: 0.5,
-                width: Metrics.screenWidth * 0.7,
-                marginHorizontal: 12,
-                textAlign: 'center',
-              }}
-              onChangeText={(text) => {
-                // setCatatan(cat)
-                setemail(text);
-              }}
-            />
-          </View>
-          <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
-            <Text>Notes</Text>
-            <TextInput
-              value={notes}
-              placeholder={'Notes'}
-              multiline={true}
-              maxLength={100}
-              style={{
-                borderBottomWidth: 0.5,
-                width: Metrics.screenWidth * 0.7,
-                marginHorizontal: 12,
-                textAlign: 'center',
-              }}
-              onChangeText={(text) => {
-                // setCatatan(cat)
-                setnotes(text);
-              }}
-            />
-          </View>
-          <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
-            <Text>Provinsi</Text>
-            <DropDownPicker
-              items={listProvinsi}
-              placeholder={'Pilih Provinsi'}
-              defaultValue={provinsi}
-              containerStyle={{height: undefined}}
-              style={{backgroundColor: '#fafafa'}}
-              itemStyle={{
-                justifyContent: 'flex-start',
-                alignItems: 'center',
-              }}
-              dropDownStyle={{backgroundColor: '#fafafa'}}
-              onChangeItem={(item) => setprovinsi(item.value)}
-            />
-          </View>
-          <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
-            <Text>Kota/Kabupaten</Text>
-            <DropDownPicker
-              items={listCKota}
-              placeholder={'Pilih Kota'}
-              defaultValue={kota}
-              containerStyle={{height: undefined}}
-              style={{backgroundColor: '#fafafa'}}
-              itemStyle={{
-                justifyContent: 'flex-start',
-                alignItems: 'center',
-              }}
-              dropDownStyle={{backgroundColor: '#fafafa'}}
-              onChangeItem={(item) => setkota(item.value)}
-            />
-          </View>
-          <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
-            <Text>Kecamatan</Text>
-            <DropDownPicker
-              items={listDistrict}
-              placeholder={'Pilih Kota'}
-              defaultValue={district}
-              containerStyle={{height: undefined}}
-              style={{backgroundColor: '#fafafa'}}
-              itemStyle={{
-                justifyContent: 'flex-start',
-                alignItems: 'center',
-              }}
-              dropDownStyle={{backgroundColor: '#fafafa'}}
-              onChangeItem={(item) => setdistrict(item.value)}
-            />
-          </View>
-          <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
-            <Text>Ds/Komplek/Daerah</Text>
-            <DropDownPicker
-              items={listSubDistric}
-              placeholder={'Pilih Daerah'}
-              defaultValue={subdistrict}
-              containerStyle={{height: undefined}}
-              style={{backgroundColor: '#fafafa'}}
-              itemStyle={{
-                justifyContent: 'flex-start',
-                alignItems: 'center',
-              }}
-              dropDownStyle={{backgroundColor: '#fafafa'}}
-              onChangeItem={(item) => setsubdistrict(item.value)}
-            />
-          </View>
-          <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
-            <Text>Zip Code</Text>
-            <TextInput
-              value={zip_code}
-              placeholder={'Zip Code'}
-              keyboardType={'number-pad'}
-              style={{
-                borderBottomWidth: 0.5,
-                width: Metrics.screenWidth * 0.7,
-                marginHorizontal: 12,
-                textAlign: 'center',
-              }}
-              onChangeText={(text) => {
-                // setCatatan(cat)
-                setzip(text);
-              }}
-            />
-          </View>
-          <TouchableOpacity
-            onPress={() => addAddress()}
-            style={{
-              width: Metrics.screenWidth * 0.8,
-              backgroundColor: 'blue',
-              height: 50,
-              borderRadius: 12,
-              marginTop: Metrics.screenHeight * 0.025,
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <Text style={{color: '#fff', fontWeight: '700', fontSize: 20}}>
-              {' '}
-              Submit
-            </Text>
-          </TouchableOpacity>
-        </ScrollView>
-      </Overlay>
+      {AddAddressOverlay()}
+      {CustomerOverlay()}
     </View>
   );
 }

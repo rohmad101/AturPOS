@@ -20,6 +20,7 @@ import ProductDetailRedux from '../Redux/ProductDetailRedux';
 import UserRedux from '../Redux/UserRedux';
 // Styles
 import styles from './Styles/LaunchScreenStyles';
+import AsyncStorage from '@react-native-community/async-storage';
 
 function HomeScreen(props) {
   const [updateSearch, setupdateSearch] = useState();
@@ -86,10 +87,14 @@ function HomeScreen(props) {
         [
           {
             text: "OK",
-            onPress: () => navigation.navigate('Auth', {
+            onPress: () => {
+            AsyncStorage.removeItem('Customer')
+            navigation.navigate('Auth', {
               screen: 'AuthScreen',
               initial: true,
-            }),
+            })
+          }
+            ,
             style: "cancel",
           },
         ],
