@@ -6,10 +6,11 @@ export function * getLogin (api, action) {
   const { data } = action
   // make the call to the api
   const response = yield call(api.getLogin, data)
+  console.log(response)
   if (response.ok) {
     // do data conversion here if needed
     yield put(UserRedux.UserSuccess(response.data))
   } else {
-    yield put(UserRedux.UserFailure())
+    yield put(UserRedux.UserFailure(response))
   }
 }

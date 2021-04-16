@@ -23,12 +23,54 @@ import styles from './Styles/LaunchScreenStyles';
 function DetailProductScreen(props) {
   const {detail, cart, navigation} = props;
   const [qty, setQty] = useState(0);
+  const [LocalCart, setLocalCart] = useState()
+  const [Status ,setStatus]= useState(false)
   // console.log(detail.data.image1)
   useEffect(() => {
     // alert(JSON.stringify(cart))
-    console.log(cart);
+    // console.log(cart);
+    setLocalCart(cart)
   }, [cart]);
 
+  function AddToCart(params) {
+    let WillRepaced = []
+    let finding = LocalCart.filter(data => data[1].product_id !== detail.data.id)
+    let missing = LocalCart.filter((i => a => a !== finding[i] || !++i)(0));
+    // console.log(missing);
+    if(missing.length>0){
+      WillRepaced.push([
+        detail.data,
+        {
+          product_id: detail.data.id,
+          qty: qty+missing[0][1].qty,
+          disc: detail.data.discount,
+          tax: detail.data.tax,
+      }])
+      finding.map((data,index)=>{
+        WillRepaced.push(data)
+      })
+      // console.log(WillRepaced)
+      props.CartSuccess(WillRepaced);
+    }else{
+      props.CartSuccess([
+        ...LocalCart,
+        [
+          detail.data,
+          {
+            product_id: detail.data.id,
+            qty: qty,
+            disc: detail.data.discount,
+            tax: detail.data.tax,
+          },
+        ],
+      ]);
+    }
+    
+    Alert.alert(
+      'Berhasil',
+      'Behasil menambahkan item ke keranjang/cart',
+    );
+  }
   return (
     <View style={styles.mainContainer}>
       <ScrollView style={styles.container}>
@@ -119,22 +161,7 @@ function DetailProductScreen(props) {
               if(qty<1){
                 Alert.alert('Gagal', 'minimal pembelian produk ini adalah 1')
               }else{
-                props.CartSuccess([
-                  ...cart,
-                  [
-                    detail.data,
-                    {
-                      product_id: detail.data.id,
-                      qty: qty,
-                      disc: detail.data.discount,
-                      tax: detail.data.tax,
-                    },
-                  ],
-                ]);
-                Alert.alert(
-                  'Berhasil',
-                  'Behasil menambahkan item ke keranjang/cart',
-                );
+               AddToCart()
               }
              
             }}

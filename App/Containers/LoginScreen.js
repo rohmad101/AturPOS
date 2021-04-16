@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { ScrollView, Text, Image, View, TextInput, TouchableOpacity } from 'react-native'
+import { ScrollView, Text, Image, View, TextInput, TouchableOpacity, Alert } from 'react-native'
 import { connect } from 'react-redux'
 import { Images, Metrics } from '../Themes'
 import UserRedux from '../Redux/UserRedux';
@@ -10,18 +10,48 @@ import { bindActionCreators } from 'redux';
 
 function LoginScreen (props) {
   const [email, setEmail] = useState('maman@gmail.com')
+  const [validationEmail, setvalidationEmail] = useState(false)
   const [password, setPassword]= useState('112233')
-  const { navigation, data, UserRequest} = props
+  const { navigation, data, UserRequest, error} = props
 
   useEffect(()=>{
-    if( data && data.token){
-      console.log(data)
+    if( data && data.token ){
+      
+      Alert.alert('Login Success', data.message)
+      // console.log(data)
        navigation.navigate('Main', {
         screen: 'HomeScreen',
         initial: true,
       })
+    }else if(data &&!data.success){
+      Alert.alert('Login Failed', data.message)
     }
   },[ data])
+
+  function Login(params) {
+    UserRequest({
+      "EMAIL": email,
+      "PASSWORD":password
+  })
+  }
+
+  function onChangePassword(params) {
+    setPassword(params)
+  }
+
+  function onChangeEmail(params) {
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (reg.test(params) === false) {
+    console.log("Email is Not Correct");
+    setEmail(params)
+    setvalidationEmail(false)
+  }
+  else {
+    setEmail(params)
+    setvalidationEmail(true)
+    console.log("Email is Correct");
+  }
+  }
 
     return (
       <View style={[styles.mainContainer, {flexDirection:'column',padding:Metrics.baseMargin}]}>
@@ -39,41 +69,55 @@ function LoginScreen (props) {
             <Text style={{color:'black', fontWeight:'700', fontSize:Metrics.screenWidth*0.05}}>Masuk</Text>
             <Text style={{color:'black', fontWeight:'normal', fontSize:Metrics.screenWidth*0.04}}>Silahkan masuk dengan nomor HP-mu yang terdaftar</Text>
           </View>
-          <View style={{paddingTop:Metrics.screenHeight*0.05}}>
-            <Text>Nomor HP</Text>
+          <View style={{paddingTop:Metrics.screenHeight*0.025}}>
+          <Text style={{color:'grey', fontWeight:'700', fontSize:Metrics.screenWidth*0.04}}>Email</Text>
             <View style={{flexDirection:'row', alignItems:'center'}}>
-              <View style={{padding:Metrics.screenWidth*0.025, borderWidth:0.5,borderRadius:20,flexDirection:'row',alignItems:'center',backgroundColor:'white',borderColor:'grey'}}>
-                <Image source={{uri:'https://indonesia.nl/en/images/basic/indonesia/background-bendera-merah-putih-berkibar.png'}} style={{ width:Metrics.screenWidth*0.065, height:Metrics.screenWidth*0.055}} />
-                <Text style={{color:'grey', fontWeight:'700', paddingLeft:4}}>+62</Text>
-              </View>
               <TextInput 
-                placeholder={'123123'}
-                keyboardType={'number-pad'}
-                style={{borderBottomWidth:0.5, width:Metrics.screenWidth*0.7, marginLeft:12}}
+                value={email}
+                placeholder={'Cth: name@mail.com'}
+                style={{color:'grey', fontWeight:'700',borderBottomWidth:0.5, width:Metrics.screenWidth*0.9}}
+                onChangeText={value => onChangeEmail(value)}
+              />
+            </View>
+            {
+              email.length>0 && !validationEmail?<Text style={{color:'red'}}>email tidak valid</Text> :null
+            }
+          </View>
+          <View style={{paddingTop:Metrics.screenHeight*0.025}}>
+            <Text style={{color:'grey', fontWeight:'700', fontSize:Metrics.screenWidth*0.04}}>Password</Text>
+            <View style={{flexDirection:'row', alignItems:'center'}}>
+              <TextInput 
+                value={password}
+                placeholder={'Password'}
+                secureTextEntry={true}
+                style={{color:'grey', fontWeight:'700',borderBottomWidth:0.5, width:Metrics.screenWidth*0.9}}
+                onChangeText={value => onChangePassword(value)}
               />
             </View>
           </View>
         </ScrollView>
-        <TouchableOpacity 
-          onPress={()=> {
-              //  navigation.dispatch(resetAction);
-              
-               UserRequest({
-                "EMAIL": "maman@gmail.com",
-                "PASSWORD": "112233"
-            })
-          }}
-          style={{ position:'absolute',bottom:25,right:25, borderWidth:0.5, padding:20, borderRadius:60}}
-          >
-          <Image source={Images.chevronRight} style={{tintColor:'grey', width:Metrics.screenWidth*0.07, height:Metrics.screenWidth*0.07 }}/>
-        </TouchableOpacity>
+        {
+          validationEmail?
+          <TouchableOpacity 
+            onPress={()=> {
+                //  navigation.dispatch(resetAction);
+                Login()
+                
+            }}
+            style={{ position:'absolute',bottom:25,right:25, borderWidth:0.5, padding:20, borderRadius:60}}
+            >
+            <Image source={Images.chevronRight} style={{tintColor:'grey', width:Metrics.screenWidth*0.07, height:Metrics.screenWidth*0.07 }}/>
+          </TouchableOpacity>:null
+        }
+       
       </View>
     )
 }
 
 const mapStateToProps = (state) => {
   return {
-    data: state.user.payload
+    data: state.user.payload,
+    error: state.user.error
   }
 }
 
