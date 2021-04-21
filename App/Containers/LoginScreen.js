@@ -9,14 +9,13 @@ import styles from './Styles/LaunchScreenStyles'
 import { bindActionCreators } from 'redux';
 
 function LoginScreen (props) {
-  const [email, setEmail] = useState('maman@gmail.com')
+  const [email, setEmail] = useState('')//maman@gmail.com
   const [validationEmail, setvalidationEmail] = useState(false)
-  const [password, setPassword]= useState('112233')
-  const { navigation, data, UserRequest, error} = props
+  const [password, setPassword]= useState('')//112233
+  const { navigation, data, UserRequest, UserSuccess} = props
 
   useEffect(()=>{
     if( data && data.token ){
-      
       Alert.alert('Login Success', data.message)
       // console.log(data)
        navigation.navigate('Main', {
@@ -25,10 +24,11 @@ function LoginScreen (props) {
       })
     }else if(data &&!data.success){
       Alert.alert('Login Failed', data.message)
+      UserSuccess(null)
     }
   },[ data])
 
-  function Login(params) {
+  const  Login = (params)=> {
     UserRequest({
       "EMAIL": email,
       "PASSWORD":password
@@ -61,9 +61,9 @@ function LoginScreen (props) {
                 <Image source={Images.backButton} style={{tintColor:'black', width:Metrics.screenWidth*0.125, height:Metrics.screenWidth*0.125}} />
             </TouchableOpacity>
 
-            <TouchableOpacity>
+            {/* <TouchableOpacity>
                 <Image source={Images.faq} style={{tintColor:'black', width:Metrics.screenWidth*0.085, height:Metrics.screenWidth*0.075}} />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
           <View style={{paddingTop:Metrics.screenHeight*0.05}}>
             <Text style={{color:'black', fontWeight:'700', fontSize:Metrics.screenWidth*0.05}}>Masuk</Text>

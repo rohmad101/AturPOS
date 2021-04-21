@@ -65,8 +65,8 @@ function HomeScreen(props) {
     if (data && data.data && updateSearch) {
       const find = data.data.filter(
         (data) =>
-          data.name.replace(/[^a-zA-Z0-9]/g, "").toLowerCase().match(updateSearch) ||
-          data.sku.toLowerCase().match(updateSearch),
+          data.name.replace(/[^a-zA-Z0-9]/g, "").toLowerCase().match(updateSearch.toLowerCase()) ||
+          data.sku.toLowerCase().match(updateSearch.toLowerCase()),
       );
       setListData(find);
     } else {

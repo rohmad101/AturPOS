@@ -14,7 +14,7 @@ import {bindActionCreators} from 'redux';
 import {ListItem, Avatar} from 'react-native-elements';
 import { TextInput } from 'react-native';
 
-const RenderItem = ({item, index, deleteItem, increaseQty, decreaseeQty}) =>(
+const RenderItem = ({item, index, deleteItem, increaseQty, decreaseeQty, changeItem}) =>(
   <ListItem bottomDivider>
     <Avatar
       title={item[0].name}
@@ -42,7 +42,8 @@ const RenderItem = ({item, index, deleteItem, increaseQty, decreaseeQty}) =>(
               textAlign: 'center',
             }}
             onChangeText={(qty1) => {
-              console.log(qty1)
+              // console.log(qty1)
+              changeItem(qty1, index)
             }}
           />
       <TouchableOpacity
@@ -107,6 +108,23 @@ function CartScreen(props) {
     // console.log('willDelete',willDelete)
     setList(willDelete)
   }
+  const changeItem = (qty1,index) =>{
+    let willAdd = [...list];
+    let data1 = [...willAdd[index]]
+    if(qty1 <= willAdd[0].stock){
+      data1[1] = {
+        "disc":  data1[1].disc, 
+        "product_id":  data1[1].product_id,
+        "qty":  qty1, 
+        "tax":  data1[1].tax
+      }
+      console.log('data1',willAdd)
+      willAdd[index] = data1;
+      setList(willAdd);
+    }else{
+      Alert.alert('Failed', 'Jumlah stock yang di pesan melebihi batas, stock yang tersedia hanya '+willAdd[0].stock+' pcs')
+    }
+  }
   let totalharga = 0
   return (
     <View style={styles.mainContainer}>
@@ -116,7 +134,7 @@ function CartScreen(props) {
             {
                 list.map((dataItem, index) =>(
                   // console.log('dataItem',dataItem )
-                   <RenderItem item={dataItem} index={index} deleteItem={deleteItem} increaseQty={increaseQty} decreaseeQty={decreaseeQty}/>
+                   <RenderItem item={dataItem} index={index} deleteItem={deleteItem} increaseQty={increaseQty} decreaseeQty={decreaseeQty} changeItem={changeItem}/>
                 )
                 )
             }

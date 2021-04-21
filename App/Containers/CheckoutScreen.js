@@ -39,7 +39,9 @@ function CheckoutScreen(props) {
   const [alamat1, setalamat1] = useState('');
   const [alamat2, setalamat2] = useState('');
   const [noHP, setnoHP] = useState('');
+  const [validationPhone, setvalidationPhone] = useState(false)
   const [email, setemail] = useState('');
+  const [validationEmail, setvalidationEmail] = useState(false)
   const [notes, setnotes] = useState('');
   const [visible, setVisible] = useState(false);
   const [useid, setuseid] = useState();
@@ -52,12 +54,16 @@ function CheckoutScreen(props) {
   const [district, setdistrict] = useState();
   const [subdistrict, setsubdistrict] = useState();
   const [zip_code, setzip] = useState();
+  const [validationzip_code, setvalidationzip_code] = useState(false)
   const [ListItem, setListItem] = useState()
   const [customer, setcustomer] = useState()
+  const [validationcustomer, setvalidationcustomer] = useState(false)
   const [openAddCustomer, setopenAddCustomer] = useState(false);
   const [nameCustomer, setnameCustomer] = useState('');
   const [emailCustomer, setemailCustomer] = useState('');
+  const [validationemailCustomer, setvalidationemailCustomer] = useState(false)
   const [phoneCustomer, setphoneCustomer] = useState('');
+  const [validationphoneCustomer, setvalidationphoneCustomer] = useState(false)
 
   const addCustomer =(value)=>{
     const custmoer ={
@@ -93,7 +99,7 @@ function CheckoutScreen(props) {
     let totalBarang = 0
     async function  getLocal(params) {
       const value =  await AsyncStorage.getItem('Customer')
-      console.log(value)
+      // console.log(value)
       if(value) {
         // value previously stored
         setcustomer(JSON.parse(value))
@@ -130,7 +136,29 @@ function CheckoutScreen(props) {
         },
       )
       .then((res) => {
-        // console.log('address', res.data.data[0].zip_code)
+        console.log('address', res.data.data[0].zip_code.toString().length)
+        //validation phone number
+        let reg = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,9}$/im;
+        if (reg.test(res.data.data[0].phone_no) === false) {
+          setvalidationPhone(false)
+        } else {
+          setvalidationPhone(true)
+        }
+        //validation email
+        reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+          if (reg.test(res.data.data[0].email) === false) {
+          setvalidationEmail(false)
+          } else {
+            setvalidationEmail(true)
+          }
+
+        //validation zipcode
+        if(res.data.data[0].zip_code.toString().length>4){
+          setvalidationzip_code(true)
+        }else{
+          setvalidationzip_code(false)
+        }
+        //set data to state
         setnameLocation(res.data.data[0].address_label)
         setalamat1(res.data.data[0].address_line_1)
         setalamat2(res.data.data[0].address_line_2)
@@ -203,7 +231,9 @@ function CheckoutScreen(props) {
         settotalBarang(totalBarang)
       }else{
         setListItem(navigation.getParam('data'))
-        settotalPrice(navigation.getParam('data')[0].price * navigation.getParam('data')[1].qty)
+        settotalPrice(parseInt(navigation.getParam('data')[0].price) * parseInt(navigation.getParam('data')[1].qty))
+        settotalBarang(parseInt(navigation.getParam('data')[1].qty))
+        // console.log(navigation.getParam('data'))
       }
   }, [])
 
@@ -436,9 +466,11 @@ function CheckoutScreen(props) {
       )
       .then((res) => {
         // console.log(res.data);
+        Alert.alert('Success', res.data.message)
         setVisible(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => 
+      Alert.alert('Failed', err.message));
   };
 
   const AddAddressOverlay = () =>(
@@ -488,6 +520,7 @@ function CheckoutScreen(props) {
             setalamat1(text);
           }}
         />
+        <Text style={{color:'red'}}>{alamat1.length<1?'Alamat 1 Tidak Boleh Kosong':null}</Text>
       </View>
       <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
         <Text style={{paddingVertical: 12}}>Alamat 2</Text>
@@ -524,9 +557,20 @@ function CheckoutScreen(props) {
           }}
           onChangeText={(text) => {
             // setCatatan(cat)
+            const reg = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,9}$/im;
+        
             setnoHP(text);
+            if (reg.test(text) === false) {
+              setvalidationPhone(false)
+            } else {
+              setvalidationPhone(true)
+            }
           }}
         />
+        {
+              noHP.length>0 && !validationPhone?
+                <Text style={{color:'red'}}>Nomor Hp Tidak Valid</Text> :null
+        }
       </View>
       <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
         <Text>Email</Text>
@@ -543,9 +587,21 @@ function CheckoutScreen(props) {
           }}
           onChangeText={(text) => {
             // setCatatan(cat)
+            let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if (reg.test(text) === false) {
+            // console.log("Email is Not Correct");
             setemail(text);
+            setvalidationEmail(false)
+            } else {
+              setemail(text);
+              setvalidationEmail(true)
+              // console.log("Email is Correct");
+            }
           }}
         />
+        {
+          email.length>0 && !validationEmail?<Text style={{color:'red'}}>Email Tidak Valid</Text> :null
+        }
       </View>
       <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
         <Text>Notes</Text>
@@ -633,9 +689,9 @@ function CheckoutScreen(props) {
       <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
         <Text>Zip Code</Text>
         <TextInput
-          value={zip_code}
+          value={zip_code && zip_code.toString()}
           placeholder={'Zip Code'}
-          keyboardType={'number-pad'}
+          // keyboardType={'number-pad'}
           style={{
             borderBottomWidth: 0.5,
             width: Metrics.screenWidth * 0.7,
@@ -645,14 +701,25 @@ function CheckoutScreen(props) {
           onChangeText={(text) => {
             // setCatatan(cat)
             setzip(text);
+            if(text>4){
+              setvalidationzip_code(true)
+            }else{
+              setvalidationzip_code(false)
+            }
           }}
         />
+        <Text style={{color:'red'}}>{validationzip_code?null:'Zip Code Tidak Boleh Kosong / Zip Code Tidak Valid'}</Text>
       </View>
       <TouchableOpacity
-        onPress={() => addAddress()}
+        onPress={() => 
+          {
+            if(validationEmail && validationPhone && validationzip_code && alamat1.length>0) {
+              addAddress()
+            }
+          }}
         style={{
           width: Metrics.screenWidth * 0.8,
-          backgroundColor: 'blue',
+          backgroundColor: validationEmail && validationPhone && validationzip_code && alamat1.length>0?'blue':'grey',
           height: 50,
           borderRadius: 12,
           marginTop: Metrics.screenHeight * 0.025,
@@ -693,9 +760,18 @@ function CheckoutScreen(props) {
           }}
           onChangeText={(text) => {
             // setCatatan(cat)
+            let reg =/[a-z]/
             setnameCustomer(text);
+            if (reg.test(text) === false) {
+              setvalidationcustomer(false)
+            }else{
+              setvalidationcustomer(true)
+            }
           }}
         />
+         {
+            nameCustomer.length>0 && !validationcustomer?<Text style={{color:'red'}}>nama tidak valid</Text> :null
+          }
       </View>
       <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
         <Text style={{paddingTop: 12}}>Email</Text>
@@ -714,8 +790,18 @@ function CheckoutScreen(props) {
           onChangeText={(text) => {
             // setCatatan(cat)
             setemailCustomer(text);
+            let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if (reg.test(text) === false) {
+              setvalidationemailCustomer(false)
+            }
+            else {
+              setvalidationemailCustomer(true)
+            }
           }}
         />
+         {
+              emailCustomer.length>0 && !validationemailCustomer?<Text style={{color:'red'}}>email tidak valid</Text> :null
+            }
       </View>
       <View style={{paddingTop: Metrics.screenHeight * 0.025}}>
         <Text style={{paddingVertical: 12}}>Phone</Text>
@@ -732,15 +818,27 @@ function CheckoutScreen(props) {
             textAlign: 'center',
           }}
           onChangeText={(text) => {
-            // setCatatan(cat)
             setphoneCustomer(parseInt(text));
+            const reg = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,9}$/im;
+            if (reg.test(text) === false) {
+              setvalidationphoneCustomer(false)
+            } else {
+              setvalidationphoneCustomer(true)
+            }
           }}
         />
+        {
+          phoneCustomer.length>0 && !validationphoneCustomer?<Text style={{color:'red'}}>phone number tidak valid</Text> :null
+        }
       <TouchableOpacity
-        onPress={() => addCustomer()}
+        onPress={() => {
+          if(validationcustomer && validationemailCustomer && validationphoneCustomer){
+            addCustomer()
+          }
+        }}
         style={{
           width: Metrics.screenWidth * 0.8,
-          backgroundColor: 'blue',
+          backgroundColor:validationcustomer && validationemailCustomer && validationphoneCustomer? 'blue':'grey',
           height: 50,
           borderRadius: 12,
           marginTop: Metrics.screenHeight * 0.025,
