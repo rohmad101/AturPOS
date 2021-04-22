@@ -38,11 +38,13 @@ function DetailProductScreen(props) {
     let missing = LocalCart.filter((i => a => a !== finding[i] || !++i)(0));
     // console.log(missing);
     if(missing.length>0){
+      let x =qty+parseInt(missing[0][1].qty)
+      // console.log(x)
       WillRepaced.push([
         detail.data,
         {
           product_id: detail.data.id,
-          qty: qty+missing[0][1].qty,
+          qty: x,
           disc: detail.data.discount,
           tax: detail.data.tax,
       }])
@@ -139,7 +141,7 @@ function DetailProductScreen(props) {
             type
             onChangeText={(qty1) => {
               if (qty1 <= detail.data.stock) {
-                setQty(qty1);
+                setQty(parseInt(qty1));
               } else {
                 alert('minimal pembelian produk ini adalah 1');
               }
