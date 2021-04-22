@@ -43,7 +43,7 @@ const RenderItem = ({item, index, deleteItem, increaseQty, decreaseeQty, changeI
             }}
             onChangeText={(qty1) => {
               // console.log(qty1)
-              changeItem(qty1, index)
+              changeItem((qty1), index)
             }}
           />
       <TouchableOpacity
@@ -111,7 +111,8 @@ function CartScreen(props) {
   const changeItem = (qty1,index) =>{
     let willAdd = [...list];
     let data1 = [...willAdd[index]]
-    if(qty1 <= willAdd[0].stock){
+    // console.log(willAdd[0][0])
+    if(qty1 <= willAdd[0][0].stock){
       data1[1] = {
         "disc":  data1[1].disc, 
         "product_id":  data1[1].product_id,
@@ -122,7 +123,7 @@ function CartScreen(props) {
       willAdd[index] = data1;
       setList(willAdd);
     }else{
-      Alert.alert('Failed', 'Jumlah stock yang di pesan melebihi batas, stock yang tersedia hanya '+willAdd[0].stock+' pcs')
+      Alert.alert('Failed', 'Jumlah stock yang di pesan melebihi batas, stock yang tersedia hanya '+willAdd[0][0].stock+' pcs')
     }
   }
   let totalharga = 0
