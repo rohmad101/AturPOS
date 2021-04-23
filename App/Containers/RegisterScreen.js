@@ -9,9 +9,14 @@ import UserRedux from '../Redux/UserRedux';
 
 // Styles
 import styles from './Styles/LaunchScreenStyles'
+import { ActivityIndicator } from 'react-native';
+import { Overlay } from 'react-native-elements';
+import { Dimensions } from 'react-native';
 
 function RegisterScreen (props) {
   const { user , navigation } = props
+  const { width, height } = Dimensions.get('screen')
+
   const [username, setusername] = useState('')
   const [validationUsername, setvalidationUsername] = useState(false)
   const [email, setemail] = useState('')
@@ -22,6 +27,7 @@ function RegisterScreen (props) {
   const [rePassword, setrePassword] = useState('')
   const [validationPassword, setvalidationPassword] = useState(false)
   const [valid, setValid] = useState(false)
+  const [loading, setLoading] = useState(false);
   function submit() {
 
     const param = {
@@ -36,6 +42,7 @@ function RegisterScreen (props) {
     }
     
     if(valid){
+      setLoading(true)
       axios
       .post(
         'https://hercules.aturtoko.id/aturorder/public/api/v1/register',param,
@@ -47,13 +54,20 @@ function RegisterScreen (props) {
         },
       ).then(
          success =>{
-           console.warn(success)
-          Alert.alert('Success', "Register Success")
-          navigation.pop()
+          //  console.warn(success)
+          setTimeout(() => {
+           setLoading(false)
+           Alert.alert('Success', "Register Success")
+           navigation.pop()
+          }, 1000);
         }
-      ).catch(err =>
-        // console.log(JSON.stringify(err))
-         Alert.alert('Failed', JSON.stringify(err))
+      ).catch(err =>{
+        console.log(JSON.stringify(err))
+        setTimeout(() => {
+          Alert.alert('Failed', err.message)
+         setLoading(false)
+        }, 1000);
+      }
       )
     }
   }
@@ -114,6 +128,7 @@ function RegisterScreen (props) {
       setValid(false)
     }
   },[validationUsername,validationEmail,validationPhone,validationPassword])
+
     return (
       <View style={[styles.mainContainer, {flexDirection:'column',padding:Metrics.baseMargin}]}>
         <ScrollView style={styles.container}>
@@ -216,6 +231,16 @@ function RegisterScreen (props) {
           </TouchableOpacity>:
           null
         }
+
+      <Overlay 
+          overlayStyle={[styles.mainContainer,{backfaceVisibility:'visible',width:width, height:height,justifyContent:'center',alignItems:'center'}]}  
+          isVisible={loading}>
+          <ActivityIndicator
+            color={'blue'}
+            size={Metrics.screenWidth * 0.1}
+            style={{marginTop: 24}} />
+          <Text style={{color:'blue'}}>Mohon Tunggu Sebentar</Text>
+      </Overlay>
       </View>
     )
 }
