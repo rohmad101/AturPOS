@@ -62,9 +62,9 @@ function RegisterScreen (props) {
           }, 1000);
         }
       ).catch(err =>{
-        console.log(JSON.stringify(err))
+        console.log(JSON.stringify(err.response.data.message))
         setTimeout(() => {
-          Alert.alert('Failed', err.message)
+          Alert.alert('Failed', err.response.data.message)
          setLoading(false)
         }, 1000);
       }
