@@ -19,14 +19,14 @@ function DetailCustomer (props) {
   const  [ CustomerDetail, setCustomerDetail ] = useState([])
 
   useEffect(()=>{
-    axios.get('https://hercules.aturtoko.id/aturorder/public/api/v1/customer/1',{
+    axios.get('https://hercules.aturtoko.id/aturorder/public/api/v1/customer/'+getParam('param'),{
       headers: {
         Authorization: 'Bearer ' + user.token,
       },
       timeout: 10000,
     },)
     .then(sucess =>{
-      console.log('sucess detail customer', sucess.data.data)
+      // console.log('sucess detail customer', sucess.data.data)
       setTimeout(() => {
       setCustomerDetail(sucess.data.data)
       }, 2000);

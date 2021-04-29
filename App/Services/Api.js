@@ -38,7 +38,12 @@ const create = (baseURL = 'https://hercules.aturtoko.id/aturorder/public/') => {
   // const getRate = () => api.get('rate_limit')
   // const getUser = (username) => api.get('search/users', {q: username})
   const getLogin =(payload)=> api.post('/api/v1/login',payload)
-  const getProduct = (payload) =>api.get('/api/v1/product','',{
+  const getProduct = (payload) =>api.post('/api/v1/product',{
+    "page": 1,
+    "order": "desc",
+    "order_by": "store_id",
+    "query": ""
+},{
     headers: {
       Authorization: 'Bearer ' + payload.token //the token is a variable which holds the token
     }

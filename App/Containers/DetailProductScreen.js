@@ -22,13 +22,14 @@ import styles from './Styles/LaunchScreenStyles';
 
 function DetailProductScreen(props) {
   const {detail, cart, navigation} = props;
-  const [qty, setQty] = useState(0);
+  const [qty, setQty] = useState(1);
   const [LocalCart, setLocalCart] = useState()
   const [Status ,setStatus]= useState(false)
   // console.log(detail.data.image1)
   useEffect(() => {
     // alert(JSON.stringify(cart))
     // console.log(cart);
+    setStatus(false)
     setLocalCart(cart)
   }, [cart]);
 
@@ -38,21 +39,26 @@ function DetailProductScreen(props) {
     let missing = LocalCart.filter((i => a => a !== finding[i] || !++i)(0));
     // console.log(missing);
     if(missing.length>0){
-      let x =qty+parseInt(missing[0][1].qty)
-      // console.log(x)
-      WillRepaced.push([
-        detail.data,
-        {
-          product_id: detail.data.id,
-          qty: x,
-          disc: detail.data.discount,
-          tax: detail.data.tax,
-      }])
-      finding.map((data,index)=>{
-        WillRepaced.push(data)
-      })
-      // console.log(WillRepaced)
-      props.CartSuccess(WillRepaced);
+      // let x =qty+parseInt(missing[0][1].qty)
+      // // console.log(x)
+      // WillRepaced.push([
+      //   detail.data,
+      //   {
+      //     product_id: detail.data.id,
+      //     qty: x,
+      //     disc: detail.data.discount,
+      //     tax: detail.data.tax,
+      // }])
+      // finding.map((data,index)=>{
+      //   WillRepaced.push(data)
+      // })
+      // // console.log(WillRepaced)
+      // props.CartSuccess(WillRepaced);
+      Alert.alert(
+        'Gagal',
+        'Product sudah ada didalam cart',
+      );
+      setStatus(true)
     }else{
       props.CartSuccess([
         ...LocalCart,
@@ -66,12 +72,13 @@ function DetailProductScreen(props) {
           },
         ],
       ]);
-    }
-    
-    Alert.alert(
+      Alert.alert(
       'Berhasil',
       'Behasil menambahkan item ke keranjang/cart',
     );
+    }
+    
+    
   }
   return (
     <View style={styles.mainContainer}>
@@ -121,7 +128,7 @@ function DetailProductScreen(props) {
           <Text>Qty:</Text>
           <TouchableOpacity 
            onPress={()=> {
-            if (qty > 0) {
+            if (qty > 1) {
               setQty(qty-1);
             }
            }}
@@ -143,7 +150,7 @@ function DetailProductScreen(props) {
               if (qty1 <= detail.data.stock) {
                 setQty(parseInt(qty1));
               } else {
-                alert('minimal pembelian produk ini adalah 1');
+                Alert.alert('Gagal','minimal pembelian produk ini adalah 1');
               }
             }}
           />
@@ -152,7 +159,7 @@ function DetailProductScreen(props) {
               if (qty < detail.data.stock) {
                 setQty(parseInt(qty)+1);
               } else {
-                alert('out of stock');
+                Alert.alert('Gagal','out of stock');
               }
             }}
             style={{ backgroundColor:'green', padding:8, borderRadius:24, height:24, justifyContent:'space-around', marginRight:12}}>
@@ -160,15 +167,17 @@ function DetailProductScreen(props) {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              if(qty<1){
+
+            if(!Status){
+              if(qty<1 || !qty){
                 Alert.alert('Gagal', 'minimal pembelian produk ini adalah 1')
               }else{
                AddToCart()
               }
-             
+            }
             }}
             style={{
-              backgroundColor: 'green',
+              backgroundColor:  Status?'grey':'green',
               padding: Metrics.screenWidth * 0.04,
               borderRadius: 20,
             }}>
@@ -182,25 +191,26 @@ function DetailProductScreen(props) {
         </View>
         <TouchableOpacity
           onPress={() => {
-            if (qty > 0) {
-              navigation.navigate('CheckoutScreen', {
-                data :[
-                  detail.data,
-                  {
-                    product_id: detail.data.id,
-                    qty: qty,
-                    disc: detail.data.discount,
-                    tax: detail.data.tax,
-                  },
-                ],
-                from:'detail'
-              });
-            } else {
-              Alert.alert(' ', 'Amount/Qty cannot 0');
+              if (qty > 0) {
+                navigation.navigate('CheckoutScreen', {
+                  data :[
+                    detail.data,
+                    {
+                      product_id: detail.data.id,
+                      qty: qty,
+                      disc: detail.data.discount,
+                      tax: detail.data.tax,
+                    },
+                  ],
+                  from:'detail'
+                });
+              } else {
+                Alert.alert(' ', 'Amount/Qty cannot 0');
+              }
             }
-          }}
+          }
           style={{
-            backgroundColor: 'blue',
+            backgroundColor:'blue',
             padding: Metrics.screenWidth * 0.04,
             borderRadius: 20,
             marginHorizontal: Metrics.screenWidth * 0.05,

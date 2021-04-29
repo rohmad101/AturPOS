@@ -43,7 +43,7 @@ function HistoryOrder (props) {
   const keyExtractor = (item, index) => index.toString()
   
   const renderItem = ({ item }) => (
-    <TouchableOpacity onPress={()=>  navigation.push('DetailHistoryOrder',{param : item.customer_id})}>
+    <TouchableOpacity onPress={()=>  navigation.push('DetailHistoryOrder',{param : item.id})}>
       <ListItem bottomDivider >
         <Avatar 
             size="medium"

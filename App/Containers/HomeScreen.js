@@ -21,6 +21,7 @@ import UserRedux from '../Redux/UserRedux';
 // Styles
 import styles from './Styles/LaunchScreenStyles';
 import AsyncStorage from '@react-native-community/async-storage';
+import axios from 'axios';
 
 function HomeScreen(props) {
   const [updateSearch, setupdateSearch] = useState();
@@ -46,6 +47,7 @@ function HomeScreen(props) {
   };
   useEffect(() => {
     ProductRequest({token: token, detail: false});
+    
   }, []);
 
   useEffect(() => {
@@ -62,13 +64,34 @@ function HomeScreen(props) {
   }, [detail]);
 
   useEffect(() => {
+    
     if (data && data.data && updateSearch) {
-      const find = data.data.filter(
-        (data) =>
-          data.name.replace(/[^a-zA-Z0-9]/g, "").toLowerCase().match(updateSearch.toLowerCase()) ||
-          data.sku.toLowerCase().match(updateSearch.toLowerCase()),
-      );
-      setListData(find);
+      axios.post('https://hercules.aturtoko.id/aturorder/public/api/v1/product',{
+        "page": 1,
+        "order": "desc",
+        "order_by": "store_id",
+        "query": updateSearch
+    },{
+        headers: {
+          Authorization: 'Bearer ' + token,
+        },
+        timeout: 10000,
+      }).then(
+        res => {
+          // console.log("success", res.data.data)
+          setListData(res.data.data);
+        }
+      ).catch(
+        err =>{
+          // console.log('error', err)
+        }
+      )
+      // const find = data.data.filter(
+      //   (data) =>
+      //     data.name.toLowerCase().match(updateSearch.toLowerCase()) ||
+      //     data.sku.toLowerCase().match(updateSearch.toLowerCase()),
+      // );
+      // setListData(find);
     } else {
       if (data && data.data) {
         setListData(data.data);
@@ -158,9 +181,10 @@ function HomeScreen(props) {
           onChangeText={(search) => setupdateSearch(search)}
           value={updateSearch}
           lightTheme={true}
+          
         />
         <View>
-          <FlatList data={listData} renderItem={renderItem} />
+          <FlatList data={listData.length>0?listData:[]} renderItem={renderItem} />
         </View>
       </ScrollView>
     </View>

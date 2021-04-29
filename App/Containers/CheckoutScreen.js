@@ -378,8 +378,9 @@ function CheckoutScreen(props) {
         payment_verification: {},
       },
       total_payment: ListItem[0].price * ListItem[1].qty,
+      is_offline: 0
     };
-    // console.log(data);
+    // console.log('data',data);
     axios
       .post(
         'https://hercules.aturtoko.id/aturorder/public/api/v1/order',
@@ -392,7 +393,7 @@ function CheckoutScreen(props) {
         },
       )
       .then((res) => {
-        // console.log(res.data);
+        console.log(res.data);
         Alert.alert(
           'Selamat Pesanan Anda Berhasil di Proses',
           'mohon di tunggu ya pesanan anda sampai di rumah',
@@ -410,14 +411,17 @@ function CheckoutScreen(props) {
           {cancelable: false},
         );
       })
-      .catch((err) => Alert.alert('Mohon Lengkapi Form Diatas'));
+      .catch((err) => {
+        console.log('err',err)
+        Alert.alert('Mohon Lengkapi Form Diatas')
+      });
   };
 
   const checkAddress = () => {
+    // console.log(useid)
     axios
       .get(
-        'https://hercules.aturtoko.id/aturorder/public/api/v1/address?customer_id=' +
-          useid,
+        'https://hercules.aturtoko.id/aturorder/public/api/v1/address',
         {
           headers: {
             Authorization: 'Bearer ' + user.token,
@@ -426,7 +430,7 @@ function CheckoutScreen(props) {
         },
       )
       .then((res) => {
-        // console.log(res.data.data)
+        console.log('response',res.data.data)
         if (res.data.data.length > 0) {
           postOrder();
         } else {

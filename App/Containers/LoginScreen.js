@@ -22,7 +22,7 @@ function LoginScreen (props) {
         screen: 'HomeScreen',
         initial: true,
       })
-    }else if(data &&!data.success){
+    }else if(data &&!data.success && data.message){
       Alert.alert('Login Failed', data.message)
       UserSuccess(null)
     }

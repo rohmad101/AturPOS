@@ -26,7 +26,7 @@ function DetailHistoryOrder (props) {
       timeout: 10000,
     },)
     .then(sucess =>{
-      // console.log('sucess list order', sucess.data.data)
+      console.log('sucess list order', sucess.data.data)
       setTimeout(() => {
       setHistoryDetail(sucess.data.data)
       }, 2000);
